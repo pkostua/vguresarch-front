@@ -1,0 +1,36 @@
+<div style="text-align: center; align-content: center;align-items: center; align-self: center; width: 100%">
+  <h1>Мы готовы начать тестирование</h1>
+  <div style="display: inline-block;">
+    <div class="card" style="width:40rem;">
+      <!--img src="..." class="card-img-top" alt="..."-->
+      <div class="card-body">
+        <h5 class="card-title">тест для детей</h5>
+        <p class="card-text">Суверенность психологического простронаства для детей, он поможет нам понять все что мы до этого не понимали.</p>
+        <button *ngFor="let c of children()" class="btn btn-primary" (click)="gotoSppChildren(c)" style="margin: 4px">Проходит {{c.name}}</button>
+      </div>
+    </div>
+
+    <div class="card" style="width:40rem;">
+      <!--img src="..." class="card-img-top" alt="..."-->
+      <div class="card-body">
+        <h5 class="card-title">тест для взрослых</h5>
+        <p class="card-text">Суверенность психологического простронаства для взрослых, он поможет нам понять все что мы до этого не понимали.
+        Тест может пройти {{getUserName()}}</p>
+        <button class="btn btn-primary">В разработке</button>
+      </div>
+    </div>
+    <div class="card" style="width:40rem;">
+      <!--img src="..." class="card-img-top" alt="..."-->
+      <div class="card-body">
+        <h5 class="card-title">Моя территория</h5>
+        <p class="card-text">
+          </p>
+        <button class="btn btn-primary">В разработке</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn btn-outline-primary" type="button" (click)="gotoFirst()"
+        *ngIf="!mainService.user.tempUser">Изменить анкету</button>
+

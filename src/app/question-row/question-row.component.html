@@ -1,0 +1,10 @@
+<div [ngClass]="{'card': true, 'border-danger':submitted && !value}" style="width: 40rem;">
+  <div class="card-body">
+    <p class="card-text">{{text}}</p>
+    <div class="btn-group" role="group">
+      <button *ngFor="let ans of ansList" type="button" class="btn btn-secondary" (click)="setAns(ans)"
+      [ngStyle]="{'background':value == ans?'orange':'darkgrey'}">
+        {{ans}}</button>
+    </div>
+  </div>
+</div>

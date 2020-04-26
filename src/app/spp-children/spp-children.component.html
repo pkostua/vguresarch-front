@@ -1,0 +1,31 @@
+<div style="text-align: center; align-content: center;align-items: center; align-self: center; width: 100%">
+  <h4>Инструкция: Вам предлагается оценить утверждения теста.
+    Если содержание утверждения относиться к Вам, следует ответить «Да».
+    Если в Вашей жизни подобных случаев не было, выберите «Нет».
+    Правильных или неправильных ответов не существует; каждый вариант встречается в реальной жизни. Спасибо!</h4>
+  <div style="display: inline-block;">
+    <app-question-row  *ngFor="let q of testList;let i=index" [text]="q.text" [ansList]="q.ansList" [id]="'testRow'+i"
+    [(value)]="q.ans" [submitted]="submitted"></app-question-row>
+    <button class="btn btn-outline-primary" style="margin: 40px" type="button" (click)="submit()">Завершить</button>
+
+    <div class="card" style="width:50rem;" *ngIf="testResult" id="result">
+      <!--img src="..." class="card-img-top" alt="..."-->
+      <div class="card-body" style="text-align: center">
+        <h5 class="card-title">Результат</h5>
+        <p class="card-text">суверенность физического тела: {{testResult.sft}}</p>
+        <p class="card-text">суверенность территории: {{testResult.st}}</p>
+        <p class="card-text">суверенность мира вещей: {{testResult.smv}}</p>
+        <button class="btn btn-primary" (click)="ngOnInit()">сброс</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="position: fixed; right: 0; bottom: 0;">
+  <div class="card" style="width:13rem" *ngIf="iam">
+    <div class="card-body" style="text-align: center">
+      <p class="card-text">тест проходит {{iam.name}}</p>
+      <p class="card-text" *ngIf="other">{{other.name}} не подгядывает</p>
+    </div>
+  </div>
+</div>
+
