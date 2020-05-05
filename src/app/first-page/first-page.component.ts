@@ -15,41 +15,68 @@ export class FirstPageComponent implements OnInit {
 
   error: string | null = null;
 
-  addForm: FormGroup= new FormGroup({
+  addChildForm: FormGroup= new FormGroup({
     name: new FormControl(),
     age: new FormControl(),
     sex: new FormControl(),
   });
 
-  familyMembers:FamilyMember[] =[];
+  addAdultForm: FormGroup= new FormGroup({
+    name: new FormControl(),
+    age: new FormControl(),
+  });
+
+  children:FamilyMember[] =[];
+  adults:FamilyMember[] =[];
 
   ngOnInit() {
-    this.familyMembers = this.mainService.user.familyMembers;
+    this.children = this.mainService.user.familyMembers.filter(m=>m.familyPosition=='CHILD');
+    this.adults = this.mainService.user.familyMembers.filter(m=>m.familyPosition=='PARENT');
   }
 
 
-  onAdd(){
-    if(this.addForm.valid){
+  onAddChild(){
+    if(this.addChildForm.valid){
       let subUser = new FamilyMember();
-      subUser.name = this.addForm.value.name;
-      subUser.age = this.addForm.value.age;
-      subUser.sex = this.addForm.value.sex
-      this.familyMembers.push(subUser);
-      this.addForm.reset()
+      subUser.name = this.addChildForm.value.name;
+      subUser.age = this.addChildForm.value.age;
+      subUser.sex = this.addChildForm.value.sex
+      subUser.familyPosition = "CHILD"
+      this.children.push(subUser);
+      this.addChildForm.reset()
       this.error=null
     }
   }
-  onDelete(su:FamilyMember){
-    this.familyMembers.splice(this.familyMembers.indexOf(su),1)
+
+  onAddAdult(){
+    if(this.addAdultForm.valid){
+      let subUser = new FamilyMember();
+      subUser.name = this.addAdultForm.value.name;
+      subUser.age = this.addAdultForm.value.age;
+      subUser.familyPosition = "PARENT"
+      this.children.push(subUser);
+      this.addAdultForm.reset()
+      this.error=null
+    }
+  }
+  onDeleteChild(su:FamilyMember){
+    this.children.splice(this.children.indexOf(su),1)
+  }
+
+  onDeleteAdult(su:FamilyMember){
+    this.adults.splice(this.children.indexOf(su),1)
   }
 
   onSubmit(){
     this.error=null
-    if(this.familyMembers.length == 0){
+    if(this.children.length == 0){
       this.error ='Укажите хотябы одного ребенка'
       return
     }
-    this.mainService.user.familyMembers=this.familyMembers;
+    this.mainService.user.familyMembers=this.children;
+    this.adults.forEach(m=>{
+      this.mainService.user.familyMembers.push(m)
+    })
     if(this.mainService.user.tempUser){
       this.router.navigate(['testRouter'])
     }

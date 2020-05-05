@@ -22,7 +22,8 @@ export class TestRouterComponent implements OnInit {
     this.router.navigate(['sppChildren'])
   }
 
-  gotoSppAdult(){
+  gotoSppAdult(m: FamilyMember | null){
+    this.mainService.currentChild=m
     this.router.navigate(['sppAdult'])
   }
 
@@ -32,8 +33,12 @@ export class TestRouterComponent implements OnInit {
   getUserName(){
     return this.mainService.user.firstName
   }
-  children(){
-    return this.mainService.user.familyMembers
+  get children(){
+    return this.mainService.user.familyMembers.filter(m=>m.familyPosition == 'CHILD')
+  }
+
+  get adults(){
+    return this.mainService.user.familyMembers.filter(m=>m.familyPosition == 'PARENT')
   }
 
 }

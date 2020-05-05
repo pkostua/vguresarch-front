@@ -4,32 +4,56 @@
       <h1>ЗДРАВСТВУЙТЕ {{mainService.user?mainService.user.firstName:'АНОНИМНЫЙ НЕКТО'}}</h1>
       <h2>РАССКАЖИТЕ НАМ О ВАШЕЙ СЕМЬЕ</h2>
     </div>
-    <form [formGroup]="addForm" (ngSubmit)="onAdd()" novalidate>
-      <h2>ДОБАВЬТЕ ЧЛЕНОВ ВАШЕЙ СЕМЬИ</h2>
+    <div>
+      <form [formGroup]="addChildForm" (ngSubmit)="onAddChild()" novalidate>
+        <h2>ДОБАВЬТЕ ДЕТЕЙ ВАШЕЙ СЕМЬИ</h2>
+          <div class="input-group input-group-lg mb-3" style="width: 700px">
+            <input placeholder="имя" id="empl-name" class="form-control" formControlName="name" required/>
+            <input id="empl-age" placeholder="возраст" type="number" [max]="150" [min]="3" class="form-control" formControlName="age" required/>
+            <select id="sex"  class="form-control" required formControlName="sex">
+              <option [value]="'BOY'">Мальчик</option>
+              <option [value]="'GIRL'">Девочка</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" id="button-addon2" type="submit">Добавить</button>
+            </div>
+          </div>
+        </form>
+        <br>
+        <div>
+          <div class="input-group input-group-lg mb-3" style="width: 700px" *ngFor="let su of children">
+            <input disabled [value]="su.name"  class="form-control"/>
+            <input disabled [value]="su.age" class="form-control"/>
+            <input *ngIf="su.sex=='BOY'" disabled [value]="'Мальчик'" class="form-control"/>
+            <input *ngIf="su.sex=='GIRL'" disabled [value]="'Девочка'" class="form-control"/>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="onDeleteChild(su)" type="button" >Удалить</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div>
+      <form [formGroup]="addAdultForm" (ngSubmit)="onAddAdult()" novalidate>
+        <h2>ДОБАВЬТЕ ВЗРОСЛЫХ ВАШЕЙ СЕМЬИ</h2>
         <div class="input-group input-group-lg" style="width: 700px">
-          <input placeholder="имя" id="empl-name" class="form-control" formControlName="name" required/>
-          <input id="empl-age" placeholder="возраст" type="number" [max]="150" [min]="3" class="form-control" formControlName="age" required/>
-          <select id="sex"  class="form-control" required formControlName="sex">
-            <option [value]="'BOY'">Мальчик</option>
-            <option [value]="'GIRL'">Девочка</option>
-          </select>
+          <input placeholder="имя" id="adult-name" class="form-control" formControlName="name" required/>
+          <input id="adult-age" placeholder="возраст" type="number" [max]="150" [min]="3" class="form-control" formControlName="age" required/>
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" id="button-addon2" type="submit">Добавить</button>
+            <button class="btn btn-outline-secondary" id="button-adult" type="submit">Добавить</button>
           </div>
         </div>
       </form>
       <br>
       <div>
-        <div class="input-group input-group-lg" style="width: 700px" *ngFor="let su of familyMembers">
+        <div class="input-group input-group-lg" style="width: 700px" *ngFor="let su of adults">
           <input disabled [value]="su.name"  class="form-control"/>
           <input disabled [value]="su.age" class="form-control"/>
-          <input *ngIf="su.sex=='BOY'" disabled [value]="'Мальчик'" class="form-control"/>
-          <input *ngIf="su.sex=='GIRL'" disabled [value]="'Девочка'" class="form-control"/>
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" (click)="onDelete(su)" type="button" >Удалить</button>
+            <button class="btn btn-outline-secondary" (click)="onDeleteAdult(su)" type="button" >Удалить</button>
           </div>
         </div>
       </div>
+    </div>
       <br>
       <div *ngIf="error" class="alert alert-danger">{{error}}</div>
       <button class="btn btn-outline-primary" (click)="onSubmit()">Готово</button>

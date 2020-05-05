@@ -23,7 +23,8 @@ export class UserAccount {
 export class FamilyMember {
   name: string;
   age:number;
-  sex: keyof typeof Sex
+  sex: (keyof typeof Sex) | null
+  familyPosition: (keyof typeof FamilyPosition) | null
 }
 
 export enum FamilyPosition {

@@ -34,7 +34,6 @@ export class MainService {
 
   currentChild: FamilyMember | null = null
 
-
   getAuthUser() {
     return this.httpClient.get<User>(this.url + 'user/getUser')
   }
@@ -55,8 +54,11 @@ export class MainService {
     return this.httpClient.get<Test[]>(this.url + 'sppAdult')
   }
 
-  postSppAdultData(data: TestAns[]) {
+  postSppAdultData(data: TestAns[], name: string | null, age: number | null) {
     let url = this.url + 'sppAdult'
+      if(name && age){
+        url += '?name='+name+'&age='+age
+      }
     return this.httpClient.post<SppAdultTestResult>(url,{data:data})
   }
 }

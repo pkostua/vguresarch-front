@@ -26,6 +26,15 @@ export class SppAdultComponent implements OnInit {
     },()=>{},()=>this.loading = false)
   }
 
+  get iam(){
+    return this.mainService.currentChild
+  }
+
+  get myName(){
+    if(!this.iam)return this.mainService.user.firstName
+    else return this.iam.name
+  }
+
 
   submit(){
     this.submitted = true;
@@ -36,7 +45,7 @@ export class SppAdultComponent implements OnInit {
       }
     }
     this.loading = true
-    this.mainService.postSppAdultData(this.testList).subscribe((ans)=>{
+    this.mainService.postSppAdultData(this.testList, this.iam?this.iam.name:null, this.iam?this.iam.age:null).subscribe((ans)=>{
       this.testResult = ans
       setTimeout(()=>{window.location.hash='result'},1000)
     },()=>{},()=>{this.loading =false})

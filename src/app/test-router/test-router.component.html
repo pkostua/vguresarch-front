@@ -6,7 +6,7 @@
       <div class="card-body">
         <h5 class="card-title">Опросник для детей</h5>
         <p class="card-text">Суверенность психологического простронаства.</p>
-        <button *ngFor="let c of children()" class="btn btn-primary" (click)="gotoSppChildren(c)" style="margin: 4px">Проходит {{c.name}}</button>
+        <button *ngFor="let c of children" class="btn btn-primary" (click)="gotoSppChildren(c)" style="margin: 4px">Проходит {{c.name}}</button>
       </div>
     </div>
 
@@ -15,8 +15,9 @@
       <div class="card-body">
         <h5 class="card-title">Опросник для взрослых</h5>
         <p class="card-text">Анализ семейный взаимоотношений. Проходят родители ребёнка и другие взрослые, принимающие активное участие в процессе воспитания.
-        Тест может пройти {{getUserName()}}</p>
-        <button class="btn btn-primary" (click)="gotoSppAdult()">Начать</button>
+        </p>
+        <button class="btn btn-primary" (click)="gotoSppAdult(null)">Проходит {{getUserName()}}</button>
+        <button *ngFor="let c of adults" class="btn btn-primary" (click)="gotoSppAdult(c)" style="margin: 4px">Проходит {{c.name}}</button>
       </div>
     </div>
     <div class="card" style="width:40rem;">
