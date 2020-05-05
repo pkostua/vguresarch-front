@@ -30,7 +30,7 @@ export class FirstPageComponent implements OnInit {
   adults:FamilyMember[] =[];
 
   ngOnInit() {
-    this.children = this.mainService.user.familyMembers.filter(m=>m.familyPosition=='CHILD');
+    this.children = this.mainService.user.familyMembers.filter(m=>m.familyPosition=='CHILD' || m.sex != null);
     this.adults = this.mainService.user.familyMembers.filter(m=>m.familyPosition=='PARENT');
   }
 
