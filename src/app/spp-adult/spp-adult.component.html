@@ -8,7 +8,7 @@
     <h2 *ngIf="loading">Загрузка</h2>
     <app-question-row  *ngFor="let q of testList;let i=index" [text]="q.text" [ansList]="q.ansList" [id]="'testRow'+i"
                        [(value)]="q.ans" [submitted]="submitted"></app-question-row>
-    <button class="btn btn-outline-primary" style="margin: 40px" type="button" (click)="submit()">Завершить</button>
+    <button class="btn btn-outline-primary" style="margin: 40px" type="button" (click)="submit()" [disabled]="loading" *ngIf="!testResult">Завершить</button>
 
     <div class="card" style="width:50rem;" *ngIf="testResult" id="result">
       <!--img src="..." class="card-img-top" alt="..."-->
@@ -36,6 +36,7 @@
         <p class="card-text">(4) предпочтение женских качеств: {{testResult.pzk}}</p>
         <p class="card-text">(4) предпочтение мужских качеств: {{testResult.pmk}}</p>
         <button class="btn btn-primary" (click)="ngOnInit()" [disabled]="loading">сброс</button>
+        <button class="btn btn-primary" (click)="goBack()">назад к выбору тестов</button>
       </div>
     </div>
   </div>

@@ -11,6 +11,7 @@ export class MainService {
 
   constructor(private  httpClient: HttpClient) { }
   url = environment.apiUrl;
+  private savedTmpUserId: string = localStorage.getItem('tmpUserId')
 
   user: User ={
     id: 0,
@@ -20,6 +21,7 @@ export class MainService {
     age: null,
     familyMembers:[],
     tempUser: true,
+    tmpUserId: this.savedTmpUserId?this.savedTmpUserId:new Date().getTime().toString(),
     account:{
       id:'',
       displayName:'аноним',
@@ -45,8 +47,9 @@ export class MainService {
     return this.httpClient.get<Test[]>(this.url + 'sppChildren')
   }
 
-  postSppChildrenData(data: TestAns[], name: string, age: number, sex: string) {
+  postSppChildrenData(data: TestAns[], name: string, age: number, sex: string,  tmpUserId: string | null) {
     let url = this.url + 'sppChildren?name='+name+'&age='+age+'&sex='+sex
+    if(tmpUserId) url+='&tmpUserId='+tmpUserId
     return this.httpClient.post<SppChildrenTestResult>(url,{data:data})
   }
 
@@ -54,11 +57,11 @@ export class MainService {
     return this.httpClient.get<Test[]>(this.url + 'sppAdult')
   }
 
-  postSppAdultData(data: TestAns[], name: string | null, age: number | null) {
-    let url = this.url + 'sppAdult'
-      if(name && age){
-        url += '?name='+name+'&age='+age
-      }
+  postSppAdultData(data: TestAns[], name: string | null, age: number | null, tmpUserId: string | null) {
+    let url = this.url + 'sppAdult?pre=0'
+    if(name) url+='&name='+name
+    if(age) url+= '&age='+age
+    if(tmpUserId) url+='&tmpUserId='+tmpUserId
     return this.httpClient.post<SppAdultTestResult>(url,{data:data})
   }
 }

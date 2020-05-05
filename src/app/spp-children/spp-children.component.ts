@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SppChildrenTestResult, Test} from '../entity/test';
 import {MainService} from '../main.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-spp-children',
@@ -9,7 +10,7 @@ import {MainService} from '../main.service';
 })
 export class SppChildrenComponent implements OnInit {
 
-  constructor(public mainService: MainService) { }
+  constructor(public mainService: MainService, private router: Router) { }
   loading: boolean = false;
 
   testList:Test[]
@@ -23,7 +24,7 @@ export class SppChildrenComponent implements OnInit {
     this.mainService.getSppChildrenData().subscribe((ans)=>{
       this.testList = ans
       this.testList.sort((a,b)=>a.id-b.id)
-    },()=>{},()=>this.loading = false)
+    },()=>{this.loading = false},()=>this.loading = false)
   }
 
   get iam(){
@@ -32,6 +33,9 @@ export class SppChildrenComponent implements OnInit {
 
   get other(){
     return this.mainService.user.familyMembers.find(m=>m.name!=this.iam.name)
+  }
+  goBack(){
+    this.router.navigate(['testRouter'])
   }
 
   submit(){
@@ -43,8 +47,11 @@ export class SppChildrenComponent implements OnInit {
       }
     }
     this.loading = true
-    this.mainService.postSppChildrenData(this.testList,this.iam.name, this.iam.age, this.iam.sex).subscribe((ans)=>{
+    this.mainService.postSppChildrenData(this.testList,this.iam.name, this.iam.age, this.iam.sex, this.mainService.user.tmpUserId).subscribe((ans)=>{
       this.testResult = ans
+      if(this.mainService.user.tmpUserId){
+        localStorage.setItem('tmpUserId', this.mainService.user.tmpUserId)
+      }
       setTimeout(()=>{ window.location.hash='result'},1000)
     },()=>{},()=>{this.loading =false})
 

@@ -6,6 +6,7 @@ export class User {
   age: number;
   familyMembers: FamilyMember[];
   account: UserAccount;
+  tmpUserId: string | null
   tempUser: boolean = false;
 }
 
