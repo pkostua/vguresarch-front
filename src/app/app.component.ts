@@ -17,7 +17,9 @@ export class AppComponent implements OnInit{
     this.mainService.getAuthUser().subscribe(ans=>{
       this.mainService.user = ans;
       this.loading = false;
-      this.router.navigate(['first'])
+      if(this.mainService.user.familyMembers.length == 0)
+        this.router.navigate(['first'])
+      else this.router.navigate(['testRouter'])
     },()=>{
       this.loading=false;
       this.router.navigate(['login'])

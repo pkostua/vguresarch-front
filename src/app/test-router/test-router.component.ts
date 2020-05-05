@@ -22,6 +22,10 @@ export class TestRouterComponent implements OnInit {
     this.router.navigate(['sppChildren'])
   }
 
+  gotoSppAdult(){
+    this.router.navigate(['sppAdult'])
+  }
+
   gotoFirst(){
     this.router.navigate(['first'])
   }

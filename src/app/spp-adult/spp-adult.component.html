@@ -1,0 +1,40 @@
+<div style="text-align: center; align-content: center;align-items: center; align-self: center; width: 100%">
+  <h4>Уважаемый родитель! Предлагаемый Вам опросник содержит утверждения о воспитании детей. Утверждения пронумерованы.
+    Читайте по очереди утверждения опросника. Если Вы в общем согласны с ними, то отвечайте "+".
+    Если Вы в общем не согласны, то выбирайте "-". Если очень трудно выбрать, то выбирайте "не знаю", старайтесь, чтобы таких ответов было не больше 5.
+    В опроснике нет "правильных" или "неправильных" утверждений. Отвечайте так, как Вы сами думаете. Этим вы поможете провести достоверное исследование.
+    На утверждения, номера которых выделены в опроснике курсивом, отцы могут не отвечать.</h4>
+  <div style="display: inline-block;">
+    <app-question-row  *ngFor="let q of testList;let i=index" [text]="q.text" [ansList]="q.ansList" [id]="'testRow'+i"
+                       [(value)]="q.ans" [submitted]="submitted"></app-question-row>
+    <button class="btn btn-outline-primary" style="margin: 40px" type="button" (click)="submit()">Завершить</button>
+
+    <div class="card" style="width:50rem;" *ngIf="testResult" id="result">
+      <!--img src="..." class="card-img-top" alt="..."-->
+      <div class="card-body" style="text-align: center">
+        <h5 class="card-title">Готово</h5>
+
+        <p class="card-text">(7) гиперпротекция (7): {{testResult.gpl}}</p>
+        <p class="card-text">(4) игнорирование потребностей: {{testResult.ymin}}</p>
+        <p class="card-text">(4) чрезмерность требований-обязанностей: {{testResult.tpl}}</p>
+        <p class="card-text">(4) недостаточность требований-обязанностей: {{testResult.tmin}}</p>
+        <p class="card-text">(4) чрезмерность требований-запретов: {{testResult.zpl}}</p>
+        <p class="card-text">(3) недостаточность требований-запретов: {{testResult.zmin}}</p>
+        <p class="card-text">(4) чрезмерность санкций: {{testResult.cpl}}</p>
+        <p class="card-text">(4) минимальность санкций: {{testResult.smin}}</p>
+        <p class="card-text">(5) неустойчивость стиля воспитания: {{testResult.n}}</p>
+        <p class="card-text">(6) расширение сферы родительских чувств: {{testResult.rrc}}</p>
+        <p class="card-text">(4) предпочтение в подростке детских качеств: {{testResult.pdk}}</p>
+        <p class="card-text">(5) воспитательная неуверенность родителя: {{testResult.vn}}</p>
+        <p class="card-text">(6) фобия утраты ребенка: {{testResult.fy}}</p>
+        <p class="card-text">(7) неразвитость родительских чувств: {{testResult.nrc}}</p>
+        <p class="card-text">(4) проекция на ребёнка соб ственных нежелаемых качеств: {{testResult.pnk}}</p>
+        <p class="card-text">(4) внесение конфликта между супругами в сферу воспитания: {{testResult.vk}}</p>
+        <p class="card-text">(4) предпочтение женских качеств: {{testResult.pzk}}</p>
+        <p class="card-text">(4) предпочтение мужских качеств: {{testResult.pmk}}</p>
+        <button class="btn btn-primary" (click)="ngOnInit()">сброс</button>
+      </div>
+    </div>
+  </div>
+</div>
+

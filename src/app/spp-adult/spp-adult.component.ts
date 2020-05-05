@@ -1,38 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import {SppChildrenTestResult, Test} from '../entity/test';
 import {MainService} from '../main.service';
+import {SppAdultTestResult, SppChildrenTestResult, Test} from '../entity/test';
 
 @Component({
-  selector: 'app-spp-children',
-  templateUrl: './spp-children.component.html',
-  styleUrls: ['./spp-children.component.css']
+  selector: 'app-spp-adult',
+  templateUrl: './spp-adult.component.html',
+  styleUrls: ['./spp-adult.component.css']
 })
-export class SppChildrenComponent implements OnInit {
+export class SppAdultComponent implements OnInit {
 
   constructor(public mainService: MainService) { }
   loading: boolean = false;
 
   testList:Test[]
-  testResult:SppChildrenTestResult | null= null
+  testResult:SppAdultTestResult | null= null
 
   submitted: boolean = false
 
   ngOnInit() {
     this.testResult = null
     this.loading = true
-    this.mainService.getSppChildrenData().subscribe((ans)=>{
+    this.mainService.getSppAdultData().subscribe((ans)=>{
       this.testList = ans
       this.testList.sort((a,b)=>a.id-b.id)
     },()=>{},()=>this.loading = false)
   }
 
-  get iam(){
-    return this.mainService.currentChild
-  }
-
-  get other(){
-    return this.mainService.user.familyMembers.find(m=>m.name!=this.iam.name)
-  }
 
   submit(){
     this.submitted = true;
@@ -43,9 +36,9 @@ export class SppChildrenComponent implements OnInit {
       }
     }
     this.loading = true
-    this.mainService.postSppChildrenData(this.testList,this.iam.name, this.iam.age, this.iam.sex).subscribe((ans)=>{
+    this.mainService.postSppAdultData(this.testList).subscribe((ans)=>{
       this.testResult = ans
-      setTimeout(()=>{ window.location.hash='result'},1000)
+      setTimeout(()=>{window.location.hash='result'},1000)
     },()=>{},()=>{this.loading =false})
 
   }

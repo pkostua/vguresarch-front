@@ -12,6 +12,7 @@ import { RoomTestComponent } from './room-test/room-test.component';
 import { QuestionRowComponent } from './question-row/question-row.component';
 import { SppChildrenComponent } from './spp-children/spp-children.component';
 import { TestRouterComponent } from './test-router/test-router.component';
+import { SppAdultComponent } from './spp-adult/spp-adult.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TestRouterComponent } from './test-router/test-router.component';
     RoomTestComponent,
     QuestionRowComponent,
     SppChildrenComponent,
-    TestRouterComponent
+    TestRouterComponent,
+    SppAdultComponent
   ],
   imports: [
     BrowserModule,

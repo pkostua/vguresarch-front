@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import {FamilyMember, FamilyPosition, User} from './entity/user';
-import {SppChildrenTestResult, Test, TestAns} from './entity/test';
+import {SppAdultTestResult, SppChildrenTestResult, Test, TestAns} from './entity/test';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +49,14 @@ export class MainService {
   postSppChildrenData(data: TestAns[], name: string, age: number, sex: string) {
     let url = this.url + 'sppChildren?name='+name+'&age='+age+'&sex='+sex
     return this.httpClient.post<SppChildrenTestResult>(url,{data:data})
+  }
+
+  getSppAdultData() {
+    return this.httpClient.get<Test[]>(this.url + 'sppAdult')
+  }
+
+  postSppAdultData(data: TestAns[]) {
+    let url = this.url + 'sppAdult'
+    return this.httpClient.post<SppAdultTestResult>(url,{data:data})
   }
 }
