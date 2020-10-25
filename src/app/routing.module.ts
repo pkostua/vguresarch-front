@@ -7,6 +7,7 @@ import {RoomTestComponent} from './room-test/room-test.component';
 import {SppChildrenComponent} from './spp-children/spp-children.component';
 import {TestRouterComponent} from './test-router/test-router.component';
 import {SppAdultComponent} from './spp-adult/spp-adult.component';
+import {AnketaComponent} from './anketa/anketa.component';
 
 const routes: Routes = [
   {path: 'first', component: FirstPageComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'sppChildren', component: SppChildrenComponent },
   {path: 'sppAdult', component: SppAdultComponent },
   {path: 'testRouter', component: TestRouterComponent },
+  {path: 'anketa', component: AnketaComponent },
 
 ];
 

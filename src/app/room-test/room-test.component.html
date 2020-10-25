@@ -1,6 +1,11 @@
 <h1>Конмнатный тест проходит {{getUserName()}}</h1>
-<button class="btn btn-outline-primary" type="button" (click)="gotoFirst()"
-        *ngIf="!mainService.user.tempUser">Изменить анкету</button>
-
-<app-question-row [text]="'Ответте на первый вопрос'" [ansList]="['да','нет','наверно']"></app-question-row>
-<app-question-row [text]="'Ответте на второй вопрос'" [ansList]="['да','нет']"></app-question-row>
+<div style="position: absolute; background: white; height: 99vh" >
+  <div *ngFor="let i of allItems" class="preview" (click)="addItem(i)">
+    <img style="width: 50px" src="{{i.img}}">
+  </div>
+</div>
+<div style="background: url(../../img/houseBackground.png); background-size: 1280px 720px; height: 100%; padding: 20px 20px 20px 200px;">
+  <div id="drop-container" class="example-boundary">
+    <app-room-item *ngFor="let item of items" [item]="item" (onRemove)="onRemove(item)"></app-room-item>
+  </div>
+</div>

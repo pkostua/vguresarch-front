@@ -3,6 +3,7 @@ import {MainService} from '../main.service';
 import {FormGroup, FormControl} from '@angular/forms';
 import {FamilyMember} from '../entity/user';
 import {Router} from '@angular/router';
+import {familyPosition, positionTitle} from '../entity/test';
 
 @Component({
   selector: 'app-first-page',
@@ -19,19 +20,33 @@ export class FirstPageComponent implements OnInit {
     name: new FormControl(),
     age: new FormControl(),
     sex: new FormControl(),
+    familyPosition: new FormControl(),
+
   });
 
   addAdultForm: FormGroup= new FormGroup({
-    name: new FormControl(),
     age: new FormControl(),
+    familyPosition: new FormControl(),
   });
 
   children:FamilyMember[] =[];
   adults:FamilyMember[] =[];
 
   ngOnInit() {
-    this.children = this.mainService.user.familyMembers.filter(m=>m.familyPosition=='CHILD' || m.sex != null);
-    this.adults = this.mainService.user.familyMembers.filter(m=>m.familyPosition=='PARENT');
+    this.children = this.mainService.children
+    this.adults = this.mainService.adults
+  }
+
+  get adultPositions(){
+    return familyPosition.filter(p=>p.isAdult)
+  }
+
+  get childPositions(){
+    return familyPosition.filter(p=>!p.isAdult)
+  }
+
+  positionTitle(name:string){
+    return positionTitle(name)
   }
 
 
@@ -41,7 +56,7 @@ export class FirstPageComponent implements OnInit {
       subUser.name = this.addChildForm.value.name;
       subUser.age = this.addChildForm.value.age;
       subUser.sex = this.addChildForm.value.sex
-      subUser.familyPosition = "CHILD"
+      subUser.familyPosition = this.addChildForm.value.familyPosition
       this.children.push(subUser);
       this.addChildForm.reset()
       this.error=null
@@ -53,8 +68,8 @@ export class FirstPageComponent implements OnInit {
       let subUser = new FamilyMember();
       subUser.name = this.addAdultForm.value.name;
       subUser.age = this.addAdultForm.value.age;
-      subUser.familyPosition = "PARENT"
-      this.children.push(subUser);
+      subUser.familyPosition = this.addAdultForm.value.familyPosition
+      this.adults.push(subUser);
       this.addAdultForm.reset()
       this.error=null
     }
@@ -77,8 +92,11 @@ export class FirstPageComponent implements OnInit {
     this.adults.forEach(m=>{
       this.mainService.user.familyMembers.push(m)
     })
-    if(this.mainService.user.tempUser){
-      this.router.navigate(['testRouter'])
+    if(this.mainService.user.tmpUserId){
+      this.mainService.updateTmpUser(this.mainService.user)
+        .subscribe(()=>{
+          this.router.navigate(['testRouter'])
+        })
     }
     else{
       this.mainService.updateUser(this.mainService.user)

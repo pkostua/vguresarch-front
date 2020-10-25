@@ -23,7 +23,7 @@ export class SppChildrenComponent implements OnInit {
     this.loading = true
     this.mainService.getSppChildrenData().subscribe((ans)=>{
       this.testList = ans
-      this.testList.sort((a,b)=>a.id-b.id)
+      //this.testList.sort((a,b)=>a.id-b.id)
     },()=>{this.loading = false},()=>this.loading = false)
   }
 
@@ -47,11 +47,8 @@ export class SppChildrenComponent implements OnInit {
       }
     }
     this.loading = true
-    this.mainService.postSppChildrenData(this.testList,this.iam.name, this.iam.age, this.iam.sex, this.mainService.user.tmpUserId).subscribe((ans)=>{
+    this.mainService.postSppChildrenData(this.testList).subscribe((ans)=>{
       this.testResult = ans
-      if(this.mainService.user.tmpUserId){
-        localStorage.setItem('tmpUserId', this.mainService.user.tmpUserId)
-      }
       setTimeout(()=>{ window.location.hash='result'},1000)
     },()=>{},()=>{this.loading =false})
 

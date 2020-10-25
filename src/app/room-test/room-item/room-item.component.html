@@ -1,0 +1,8 @@
+<div id="{{item.id}}" class="drag-element" [cdkDragBoundary]="container" cdkDrag  (cdkDragReleased)="onDrop($event)">
+  <div style="position: absolute; background: transparent; z-index: 99">{{item.owner?item.owner.name:'общее'}}
+    <span (click)="rotate()" class="remove-button">П</span>
+    <span (click)="remove()" class="remove-button">X</span>
+  </div>
+
+  <img src="{{item.img}}" [classList]="rotateClass"/>
+</div>

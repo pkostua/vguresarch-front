@@ -1,23 +1,41 @@
 <div style="text-align: center; align-content: center;align-items: center; align-self: center; width: 100%">
-  <h1>Мы готовы начать тестирование</h1>
+  <h1>Добро пожаловать на наше исследование!</h1>
+  <h4>Спасибо, что согласились участвовать!</h4>
+  <h4>и сегодня Вы узнаете что-то новое!</h4>
+  <h4><button class="btn btn-outline-primary" type="button" (click)="gotoFirst()"
+              *ngIf="!mainService.user.tempUser">Изменить анкету</button></h4>
+
+
+  <div >
+  <button *ngFor="let c of children" [ngClass]="{btn:true, 'btn-outline-primary':c !== mainService.currentChild , 'btn-primary':c === mainService.currentChild}" type="button" (click)="setChild(c)"
+         style="margin: 4px" >{{c.name}} возраст: {{c.age}}</button>
+  </div>
   <div style="display: inline-block;">
-    <div class="card" style="width:40rem;">
-      <!--img src="..." class="card-img-top" alt="..."-->
-      <div class="card-body">
-        <h5 class="card-title">Опросник для детей</h5>
-        <p class="card-text">Суверенность психологического пространства.</p>
-        <button *ngFor="let c of children" class="btn btn-primary" (click)="gotoSppChildren(c)" style="margin: 4px">Проходит {{c.name}}</button>
-      </div>
-    </div>
 
     <div class="card" style="width:40rem;">
       <!--img src="..." class="card-img-top" alt="..."-->
       <div class="card-body">
         <h5 class="card-title">Опросник для взрослых</h5>
-        <p class="card-text">Анализ семейный взаимоотношений. Проходят родители ребёнка и другие взрослые, принимающие активное участие в процессе воспитания.
+        <p class="card-text">Проходят родители ребёнка и другие взрослые, принимающие активное участие в процессе воспитания.
         </p>
-        <button class="btn btn-primary" (click)="gotoSppAdult(null)">Проходит {{getUserName()}}</button>
-        <button *ngFor="let c of adults" class="btn btn-primary" (click)="gotoSppAdult(c)" style="margin: 4px">Проходит {{c.name}}</button>
+        <button *ngFor="let c of adults" class="btn btn-outline-primary" (click)="gotoSppAdult(c)" style="margin: 4px">
+          Проходит {{positionTitle(c.familyPosition)}} ({{c.age}})</button>
+      </div>
+    </div>
+    <div class="card" style="width:40rem;">
+      <!--img src="..." class="card-img-top" alt="..."-->
+      <div class="card-body">
+        <h5 class="card-title">Опросник для мамы</h5>
+        <p class="card-text">Тест будет проведен в отношении ребенка {{mainService.currentChild.name}}</p>
+        <button class="btn btn-outline-primary" (click)="gotoSppChildren()">Пройти</button>
+      </div>
+    </div>
+    <div class="card" style="width:40rem;">
+      <!--img src="..." class="card-img-top" alt="..."-->
+      <div class="card-body">
+        <h5 class="card-title">Анкета для мамы</h5>
+        <p class="card-text">Анкета в отношении ребенка {{mainService.currentChild.name}}</p>
+        <button class="btn btn-outline-primary" (click)="gotoAnketa()">Пройти</button>
       </div>
     </div>
     <div class="card" style="width:40rem;">
@@ -26,12 +44,10 @@
         <h5 class="card-title">Моя территория</h5>
         <p class="card-text">Тест-игра, которая поможет понять как ребёнок себя ощущает в своём жилище.
           </p>
-        <button class="btn btn-primary">В разработке</button>
+        <button class="btn btn-outline-primary" (click)="gotoRoomTest()">Начать</button>
       </div>
     </div>
   </div>
 </div>
 
-<button class="btn btn-outline-primary" type="button" (click)="gotoFirst()"
-        *ngIf="!mainService.user.tempUser">Изменить анкету</button>
 

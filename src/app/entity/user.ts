@@ -2,10 +2,10 @@ export class User {
   id: number;
   firstName: string;
   lastName: string;
-  familyPosition: keyof typeof FamilyPosition;
+  familyPosition: string;
   age: number;
   familyMembers: FamilyMember[];
-  account: UserAccount;
+  account: UserAccount | null;
   tmpUserId: string | null
   tempUser: boolean = false;
 }
@@ -22,17 +22,13 @@ export class UserAccount {
 }
 
 export class FamilyMember {
+  id: number;
   name: string;
   age:number;
   sex: (keyof typeof Sex) | null
-  familyPosition: (keyof typeof FamilyPosition) | null
+  familyPosition: string
 }
 
-export enum FamilyPosition {
-  PARENT='PARENT',
-  CHILD='CHILD'
-
-}
 
 export enum Sex {
   BOY='Мальчик',

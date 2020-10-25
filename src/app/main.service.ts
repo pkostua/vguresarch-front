@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import {FamilyMember, FamilyPosition, User} from './entity/user';
-import {SppAdultTestResult, SppChildrenTestResult, Test, TestAns} from './entity/test';
+import {FamilyMember,  User} from './entity/user';
+import {familyPosition, SppAdultTestResult, SppChildrenTestResult, Test, TestAns} from './entity/test';
+import {Anketa} from './entity/anketa';
 
 @Injectable({
   providedIn: 'root'
@@ -17,39 +18,57 @@ export class MainService {
     id: 0,
     firstName: 'аноним',
     lastName: 'аноним',
-    familyPosition: FamilyPosition.PARENT,
+    familyPosition: 'MAMA',
     age: null,
     familyMembers:[],
     tempUser: true,
     tmpUserId: this.savedTmpUserId?this.savedTmpUserId:new Date().getTime().toString(),
-    account:{
-      id:'',
-      displayName:'аноним',
-      firstName: 'аноним',
-      lastName: 'аноним',
-      email:'',
-      userName: '',
-      profileUrl: '',
-      imageUrl: ''
-    }
+    account:null
   };
 
+  get children(){
+    return this.user.familyMembers.filter(m=>{
+      const find = familyPosition.find(p=>p.name === m.familyPosition)
+      return find && !find.isAdult
+    });
+  }
+  get adults() {
+    return this.user.familyMembers.filter(m=>{
+      const find = familyPosition.find(p=>p.name === m.familyPosition)
+      return find && find.isAdult
+    })
+  }
+
   currentChild: FamilyMember | null = null
+
+  currentAdult: FamilyMember | null = null
 
   getAuthUser() {
     return this.httpClient.get<User>(this.url + 'user/getUser')
   }
+
+  getTmpUser() {
+    return this.httpClient.get<User>(this.url + 'user/getTmpUser?tmpUserId='+this.user.tmpUserId)
+  }
+
   updateUser(user: User) {
     return this.httpClient.post<any>(this.url + 'user/updateUser', user)
+  }
+
+  updateTmpUser(user: User) {
+    localStorage.setItem("tmpUserId", user.tmpUserId)
+    return this.httpClient.post<any>(this.url + 'user/updateUser?tmpUserId='+user.tmpUserId, user)
   }
 
   getSppChildrenData() {
     return this.httpClient.get<Test[]>(this.url + 'sppChildren')
   }
 
-  postSppChildrenData(data: TestAns[], name: string, age: number, sex: string,  tmpUserId: string | null) {
-    let url = this.url + 'sppChildren?name='+name+'&age='+age+'&sex='+sex
-    if(tmpUserId) url+='&tmpUserId='+tmpUserId
+  postSppChildrenData(data: TestAns[]) {
+    let url = this.url + 'sppChildren?pre=0'
+    if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
+    if(this.currentAdult) url += '&parent='+this.currentAdult.id
+    if(this.currentChild) url += '&child='+this.currentChild.id
     return this.httpClient.post<SppChildrenTestResult>(url,{data:data})
   }
 
@@ -57,11 +76,23 @@ export class MainService {
     return this.httpClient.get<Test[]>(this.url + 'sppAdult')
   }
 
-  postSppAdultData(data: TestAns[], name: string | null, age: number | null, tmpUserId: string | null) {
+  postSppAdultData(data: TestAns[]) {
     let url = this.url + 'sppAdult?pre=0'
-    if(name) url+='&name='+name
-    if(age) url+= '&age='+age
-    if(tmpUserId) url+='&tmpUserId='+tmpUserId
+    if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
+    if(this.currentAdult) url += '&parent='+this.currentAdult.id
+    if(this.currentChild) url += '&child='+this.currentChild.id
     return this.httpClient.post<SppAdultTestResult>(url,{data:data})
+  }
+
+  getAnketaData() {
+    return this.httpClient.get<Test[]>(this.url + 'anketa')
+  }
+
+  postAnketaData(data: TestAns[]) {
+    let url = this.url + 'anketa?pre=0'
+    if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
+    if(this.currentAdult) url += '&parent='+this.currentAdult.id
+    if(this.currentChild) url += '&child='+this.currentChild.id
+    return this.httpClient.post<Anketa>(url,{data:data})
   }
 }

@@ -13,6 +13,12 @@ import { QuestionRowComponent } from './question-row/question-row.component';
 import { SppChildrenComponent } from './spp-children/spp-children.component';
 import { TestRouterComponent } from './test-router/test-router.component';
 import { SppAdultComponent } from './spp-adult/spp-adult.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { RoomItemComponent } from './room-test/room-item/room-item.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { OwnerSelectorComponent } from './room-test/owner-selector/owner-selector.component';
+import { AnketaComponent } from './anketa/anketa.component';
 
 @NgModule({
   declarations: [
@@ -23,16 +29,23 @@ import { SppAdultComponent } from './spp-adult/spp-adult.component';
     QuestionRowComponent,
     SppChildrenComponent,
     TestRouterComponent,
-    SppAdultComponent
+    SppAdultComponent,
+    RoomItemComponent,
+    OwnerSelectorComponent,
+    AnketaComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [OwnerSelectorComponent],
 })
 export class AppModule { }

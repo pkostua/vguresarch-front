@@ -1,39 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import {MainService} from '../main.service';
-import {SppAdultTestResult, Test} from '../entity/test';
 import {Router} from '@angular/router';
+import { Test} from '../entity/test';
+import {Anketa} from '../entity/anketa';
 
 @Component({
-  selector: 'app-spp-adult',
-  templateUrl: './spp-adult.component.html',
-  styleUrls: ['./spp-adult.component.css']
+  selector: 'app-anketa',
+  templateUrl: './anketa.component.html',
+  styleUrls: ['./anketa.component.css']
 })
-export class SppAdultComponent implements OnInit {
+export class AnketaComponent implements OnInit {
 
   constructor(public mainService: MainService, private router: Router) { }
   loading: boolean = false;
 
   testList:Test[]
-  testResult:SppAdultTestResult | null= null
+  testResult:Anketa | null= null
 
   submitted: boolean = false
 
   ngOnInit() {
     this.testResult = null
     this.loading = true
-    this.mainService.getSppAdultData().subscribe((ans)=>{
+    this.mainService.getAnketaData().subscribe((ans)=>{
       this.testList = ans
       //this.testList.sort((a,b)=>a.id-b.id)
-    },()=>{},()=>this.loading = false)
-  }
-
-  get iam(){
-    return this.mainService.currentChild
-  }
-
-  get myName(){
-    if(!this.iam)return this.mainService.user.firstName
-    else return this.iam.name
+    },()=>{this.loading = false},()=>this.loading = false)
   }
 
   goBack(){
@@ -49,10 +41,10 @@ export class SppAdultComponent implements OnInit {
       }
     }
     this.loading = true
-    this.mainService.postSppAdultData(this.testList).subscribe((ans)=>{
+    this.mainService.postAnketaData(this.testList).subscribe((ans)=>{
       this.testResult = ans
-      setTimeout(()=>{window.location.hash='result'},1000)
-    },()=>{this.loading = false},()=>{this.loading =false})
+      setTimeout(()=>{ window.location.hash='result'},1000)
+    },()=>{},()=>{this.loading =false})
 
   }
 

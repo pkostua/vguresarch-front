@@ -17,12 +17,19 @@ export class AppComponent implements OnInit{
     this.mainService.getAuthUser().subscribe(ans=>{
       this.mainService.user = ans;
       this.loading = false;
+      this.mainService.user.tmpUserId = null
       if(this.mainService.user.familyMembers.length == 0)
-        this.router.navigate(['first'])
+          this.router.navigate(['first'])
       else this.router.navigate(['testRouter'])
     },()=>{
-      this.loading=false;
-      this.router.navigate(['login'])
+      this.mainService.getTmpUser().subscribe((ans)=>{
+        if(ans){
+          this.mainService.user = ans
+        }
+      },()=>{},()=>{
+        this.router.navigate(['login'])
+        this.loading = false
+      })
     })
   }
 }

@@ -1,0 +1,73 @@
+.example-box {
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: move;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 4px;
+  margin-right: 25px;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+  0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.drag-element {
+  cursor: move;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.remove-button{
+  cursor: pointer;
+  background: wheat;
+  margin: 1px;
+}
+
+.remove-button:hover{
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.rotate180 {
+  -webkit-transform:rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.rotate90 {
+  -webkit-transform:rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.rotate270 {
+  -webkit-transform:rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}

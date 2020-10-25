@@ -1,0 +1,12 @@
+<form [formGroup]="ownerForm" (ngSubmit)="onYesClick()">
+  <div mat-dialog-content>
+    <select id="owner" name="owner" class="form-control" formControlName="owner" required>
+      <option [value]="null">Общее</option>
+      <option *ngFor="let m of members" [ngValue]="m">{{m.name}}</option>
+    </select>
+  </div>
+  <div mat-dialog-actions>
+    <button class="btn btn-outline-secondary" type="button" (click)="onNoClick()">Отменить</button>
+    <button class="btn btn-outline-secondary" type="submit">Добавить {{data.name}}</button>
+  </div>
+</form>
