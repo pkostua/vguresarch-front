@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {SppChildrenTestResult, Test} from '../entity/test';
 import {MainService} from '../main.service';
 import {Router} from '@angular/router';
+import {TestResultDialogComponent} from '../test-result-dialog/test-result-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-spp-children',
@@ -10,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class SppChildrenComponent implements OnInit {
 
-  constructor(public mainService: MainService, private router: Router) { }
+  constructor(public mainService: MainService, private router: Router, public dialog: MatDialog) { }
   loading: boolean = false;
 
   testList:Test[]
@@ -34,9 +36,6 @@ export class SppChildrenComponent implements OnInit {
   get other(){
     return this.mainService.user.familyMembers.find(m=>m.name!=this.iam.name)
   }
-  goBack(){
-    this.router.navigate(['testRouter'])
-  }
 
   submit(){
     this.submitted = true;
@@ -49,8 +48,15 @@ export class SppChildrenComponent implements OnInit {
     this.loading = true
     this.mainService.postSppChildrenData(this.testList).subscribe((ans)=>{
       this.testResult = ans
-      setTimeout(()=>{ window.location.hash='result'},1000)
-    },()=>{},()=>{this.loading =false})
+      this.mainService.currentChild.hasSppChildren = true
+      const dialogRef = this.dialog.open(TestResultDialogComponent, {
+        data: "<h5 class=\"card-title\">Результат</h5>" +
+          `<p class=\"card-text\">суверенность физического тела: ${ans.sft}}</p>` +
+          `<p class=\"card-text\">суверенность территории: ${ans.st}</p>` +
+          `<p class=\"card-text\">суверенность мира вещей: ${ans.smv}</p>` +
+          `<p class=\"card-text\">суверенность привычек: ${ans.sp}}</p>`
+      });
+    },()=>{this.loading =false},()=>{this.loading =false})
 
   }
 

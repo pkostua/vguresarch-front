@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import {FamilyMember,  User} from './entity/user';
 import {familyPosition, SppAdultTestResult, SppChildrenTestResult, Test, TestAns} from './entity/test';
 import {Anketa} from './entity/anketa';
+import {RoomItemModel} from './entity/roomTest';
 
 @Injectable({
   providedIn: 'root'
@@ -67,8 +68,8 @@ export class MainService {
   postSppChildrenData(data: TestAns[]) {
     let url = this.url + 'sppChildren?pre=0'
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
-    if(this.currentAdult) url += '&parent='+this.currentAdult.id
-    if(this.currentChild) url += '&child='+this.currentChild.id
+    if(this.currentAdult) url += '&parentId='+this.currentAdult.id
+    if(this.currentChild) url += '&childId='+this.currentChild.id
     return this.httpClient.post<SppChildrenTestResult>(url,{data:data})
   }
 
@@ -79,8 +80,8 @@ export class MainService {
   postSppAdultData(data: TestAns[]) {
     let url = this.url + 'sppAdult?pre=0'
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
-    if(this.currentAdult) url += '&parent='+this.currentAdult.id
-    if(this.currentChild) url += '&child='+this.currentChild.id
+    if(this.currentAdult) url += '&parentId='+this.currentAdult.id
+    if(this.currentChild) url += '&childId='+this.currentChild.id
     return this.httpClient.post<SppAdultTestResult>(url,{data:data})
   }
 
@@ -91,8 +92,16 @@ export class MainService {
   postAnketaData(data: TestAns[]) {
     let url = this.url + 'anketa?pre=0'
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
-    if(this.currentAdult) url += '&parent='+this.currentAdult.id
-    if(this.currentChild) url += '&child='+this.currentChild.id
+    if(this.currentAdult) url += '&parentId='+this.currentAdult.id
+    if(this.currentChild) url += '&childId='+this.currentChild.id
     return this.httpClient.post<Anketa>(url,{data:data})
+  }
+
+  postRoomData(data: RoomItemModel[]) {
+    let url = this.url + 'room?pre=0'
+    if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
+    if(this.currentAdult) url += '&parentId='+this.currentAdult.id
+    if(this.currentChild) url += '&childId='+this.currentChild.id
+    return this.httpClient.post<any>(url,{data:data})
   }
 }

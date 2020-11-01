@@ -1,11 +1,13 @@
-<h1>Конмнатный тест проходит {{getUserName()}}</h1>
-<div style="position: absolute; background: white; height: 99vh" >
+<span>Конмнатный тест проходит {{getUserName()}}</span>
+<button class="btn btn-outline-primary" style="margin-left: 40px" type="button" (click)="submit()" [disabled]="loading">Готово</button>
+
+<div style="position: absolute; background: white; height: 725px" >
   <div *ngFor="let i of allItems" class="preview" (click)="addItem(i)">
     <img style="width: 50px" src="{{i.img}}">
   </div>
 </div>
-<div style="background: url(../../img/houseBackground.png); background-size: 1280px 720px; height: 100%; padding: 20px 20px 20px 200px;">
+<div style="background: url(../../img/houseBackground.png); width: 1393px; height: 725px;padding-top: 20px ">
   <div id="drop-container" class="example-boundary">
-    <app-room-item *ngFor="let item of items" [item]="item" (onRemove)="onRemove(item)"></app-room-item>
+      <app-room-item *ngFor="let item of items; let i = index" [item]="item" (onRemove)="onRemove(item)" [id]="i.toString()"></app-room-item>
   </div>
 </div>

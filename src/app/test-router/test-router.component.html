@@ -19,6 +19,7 @@
         <p class="card-text">Проходят родители ребёнка и другие взрослые, принимающие активное участие в процессе воспитания.
         </p>
         <button *ngFor="let c of adults" class="btn btn-outline-primary" (click)="gotoSppAdult(c)" style="margin: 4px">
+          <app-check-icon *ngIf="mainService.currentChild.sppAdultList && mainService.currentChild.sppAdultList.includes(c.id)"></app-check-icon>
           Проходит {{positionTitle(c.familyPosition)}} ({{c.age}})</button>
       </div>
     </div>
@@ -27,7 +28,10 @@
       <div class="card-body">
         <h5 class="card-title">Опросник для мамы</h5>
         <p class="card-text">Тест будет проведен в отношении ребенка {{mainService.currentChild.name}}</p>
-        <button class="btn btn-outline-primary" (click)="gotoSppChildren()">Пройти</button>
+        <button class="btn btn-outline-primary" (click)="gotoSppChildren()">
+          Пройти
+          <app-check-icon style="color: green" *ngIf="mainService.currentChild.hasSppChildren"></app-check-icon>
+        </button>
       </div>
     </div>
     <div class="card" style="width:40rem;">
@@ -35,7 +39,10 @@
       <div class="card-body">
         <h5 class="card-title">Анкета для мамы</h5>
         <p class="card-text">Анкета в отношении ребенка {{mainService.currentChild.name}}</p>
-        <button class="btn btn-outline-primary" (click)="gotoAnketa()">Пройти</button>
+        <button class="btn btn-outline-primary" (click)="gotoAnketa()">
+          Пройти
+          <app-check-icon style="color: green" *ngIf="mainService.currentChild.hasAnketa"></app-check-icon>
+        </button>
       </div>
     </div>
     <div class="card" style="width:40rem;">
@@ -44,7 +51,10 @@
         <h5 class="card-title">Моя территория</h5>
         <p class="card-text">Тест-игра, которая поможет понять как ребёнок себя ощущает в своём жилище.
           </p>
-        <button class="btn btn-outline-primary" (click)="gotoRoomTest()">Начать</button>
+        <button class="btn btn-outline-primary" (click)="gotoRoomTest()">
+          Начать
+          <app-check-icon style="color: green" *ngIf="mainService.currentChild.hasRoom"></app-check-icon>
+        </button>
       </div>
     </div>
   </div>

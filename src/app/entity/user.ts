@@ -27,6 +27,10 @@ export class FamilyMember {
   age:number;
   sex: (keyof typeof Sex) | null
   familyPosition: string
+  hasAnketa: boolean
+  hasRoom: boolean
+  hasSppChildren: boolean
+  sppAdultList: number[]
 }
 
 

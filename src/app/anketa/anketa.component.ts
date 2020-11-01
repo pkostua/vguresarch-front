@@ -3,6 +3,8 @@ import {MainService} from '../main.service';
 import {Router} from '@angular/router';
 import { Test} from '../entity/test';
 import {Anketa} from '../entity/anketa';
+import {TestResultDialogComponent} from '../test-result-dialog/test-result-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-anketa',
@@ -11,7 +13,7 @@ import {Anketa} from '../entity/anketa';
 })
 export class AnketaComponent implements OnInit {
 
-  constructor(public mainService: MainService, private router: Router) { }
+  constructor(public mainService: MainService, private router: Router, public dialog: MatDialog) { }
   loading: boolean = false;
 
   testList:Test[]
@@ -42,8 +44,11 @@ export class AnketaComponent implements OnInit {
     }
     this.loading = true
     this.mainService.postAnketaData(this.testList).subscribe((ans)=>{
+      this.mainService.currentChild.hasAnketa = true
+      const dialogRef = this.dialog.open(TestResultDialogComponent, {
+        data: "Результаты сохранены. Спасибо за участие",
+      });
       this.testResult = ans
-      setTimeout(()=>{ window.location.hash='result'},1000)
     },()=>{},()=>{this.loading =false})
 
   }

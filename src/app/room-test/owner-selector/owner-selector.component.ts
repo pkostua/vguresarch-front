@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {RoomItemModel} from '../../entity/roomTest';
 import {MainService} from '../../main.service';
 import {FamilyMember} from '../../entity/user';
+import {familyPosition, positionTitle} from '../../entity/test';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
@@ -27,12 +28,15 @@ export class OwnerSelectorComponent {
   }
 
   onYesClick(): void {
-    console.log(this.ownerForm.value.owner)
     this.data.owner = this.ownerForm.value.owner
     this.dialogRef.close(this.data);
   }
 
   get members(){
     return this.mainService.user.familyMembers
+  }
+
+  positionTitle(name:string){
+    return positionTitle(name)
   }
 }

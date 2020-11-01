@@ -19,6 +19,8 @@ import { RoomItemComponent } from './room-test/room-item/room-item.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { OwnerSelectorComponent } from './room-test/owner-selector/owner-selector.component';
 import { AnketaComponent } from './anketa/anketa.component';
+import { CheckIconComponent } from './check-icon/check-icon.component';
+import { TestResultDialogComponent } from './test-result-dialog/test-result-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AnketaComponent } from './anketa/anketa.component';
     SppAdultComponent,
     RoomItemComponent,
     OwnerSelectorComponent,
-    AnketaComponent
+    AnketaComponent,
+    CheckIconComponent,
+    TestResultDialogComponent
   ],
   imports: [
     BrowserModule,
