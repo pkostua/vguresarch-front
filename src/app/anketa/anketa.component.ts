@@ -49,7 +49,7 @@ export class AnketaComponent implements OnInit {
         data: "Результаты сохранены. Спасибо за участие",
       });
       this.testResult = ans
-    },()=>{},()=>{this.loading =false})
+    },()=>{this.loading =false},()=>{this.loading =false})
 
   }
 
