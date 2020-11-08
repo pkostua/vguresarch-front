@@ -1,5 +1,5 @@
-<div style="background: whitesmoke; text-align: center; height: 100vh">
-  <div style="align-items: center; margin-top: 10%; width: 700px; background: white; display: inline-block">
+<div style=" text-align: center; height: 100vh">
+  <div style="padding :10px; align-items: center; border: 1px solid; border-radius: 10px; vertical-align: middle; background: white; opacity: 80%; display: inline-block">
     <div>
       <h1>ЗДРАВСТВУЙТЕ {{mainService.user?mainService.user.firstName:'АНОНИМНЫЙ НЕКТО'}}</h1>
       <h2>РАССКАЖИТЕ НАМ О ВАШЕЙ СЕМЬЕ</h2>
@@ -63,6 +63,6 @@
     </div>
       <br>
       <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-      <button class="btn btn-outline-primary" (click)="onSubmit()">Готово</button>
+      <button class="btn btn-primary" (click)="onSubmit()">Готово</button>
   </div>
 </div>

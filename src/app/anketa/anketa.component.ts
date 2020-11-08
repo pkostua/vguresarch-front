@@ -26,12 +26,24 @@ export class AnketaComponent implements OnInit {
     this.loading = true
     this.mainService.getAnketaData().subscribe((ans)=>{
       this.testList = ans
+      this.mainService.getAnketaTestData().subscribe((ans)=>{
+        if(ans) {
+          this.testList.forEach((t) => {
+            let find = ans.find(a => a.type == t.id)
+            if (find) t.ans = find.ans
+          })
+        }
+      },error => {this.loading = false},()=>this.loading = false)
       //this.testList.sort((a,b)=>a.id-b.id)
-    },()=>{this.loading = false},()=>this.loading = false)
+    },()=>{this.loading = false},()=>{})
   }
 
   goBack(){
     this.router.navigate(['testRouter'])
+  }
+  onChange(){
+    setTimeout(()=>this.mainService.postAnketaData(this.testList).subscribe(()=>{}), 500)
+
   }
 
   submit(){

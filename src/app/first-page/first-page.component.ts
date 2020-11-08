@@ -98,13 +98,15 @@ export class FirstPageComponent implements OnInit {
     })
     if(this.mainService.user.tmpUserId){
       this.mainService.updateTmpUser(this.mainService.user)
-        .subscribe(()=>{
+        .subscribe((ans)=>{
+          if(ans) this.mainService.user = ans
           this.router.navigate(['testRouter'])
         })
     }
     else{
       this.mainService.updateUser(this.mainService.user)
-        .subscribe(()=>{
+        .subscribe((ans)=>{
+          if(ans) this.mainService.user = ans
           this.router.navigate(['testRouter'])
         })
     }

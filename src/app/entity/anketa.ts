@@ -10,5 +10,5 @@ export  interface Anketa {
 
 export interface AnketaQuestion{
   type: string
-  ans: number
+  ans: string
 }

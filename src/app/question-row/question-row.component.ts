@@ -22,10 +22,13 @@ export class QuestionRowComponent {
   value: string | null = null
   @Output() valueChange = new EventEmitter()
 
+  @Output() onChange = new EventEmitter()
+
 
   setAns(i: string){
     this.value = i
     this.valueChange.emit(this.value)
+    this.onChange.emit()
 
   }
 

@@ -21,6 +21,8 @@ import { OwnerSelectorComponent } from './room-test/owner-selector/owner-selecto
 import { AnketaComponent } from './anketa/anketa.component';
 import { CheckIconComponent } from './check-icon/check-icon.component';
 import { TestResultDialogComponent } from './test-result-dialog/test-result-dialog.component';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,7 @@ import { TestResultDialogComponent } from './test-result-dialog/test-result-dial
     OwnerSelectorComponent,
     AnketaComponent,
     CheckIconComponent,
-    TestResultDialogComponent
+    TestResultDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { TestResultDialogComponent } from './test-result-dialog/test-result-dial
     ReactiveFormsModule,
     BrowserAnimationsModule,
     DragDropModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

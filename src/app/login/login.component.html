@@ -1,14 +1,16 @@
-<div style="background: whitesmoke; text-align: center; height: 100vh">
-  <div style="align-items: center; margin-top: 10%; height: 500px; width: 1000px; background: white; display: inline-block">
+<div style=" text-align: center; height: 100vh">
+  <div style="align-items: center; margin-top: 10%; background: white; opacity: 80%; display: inline-block; border: 1px solid; border-radius: 10px">
     <table>
-      <td style="max-width: 500px; min-width: 500px">
+      <td style="max-width: 300px; min-width: 300px">
         <h1>ВОЙТИ ЧЕРЕЗ</h1>
-        <a href="/auth/vkontakte" ><img src="../../img/VK_Blue_Logo.svg"></a>
+        <div style="opacity: 99%; margin-top: 28px">
+          <a href="/auth/vkontakte" ><img src="../../img/VK_Blue_Logo.svg"></a>
+        </div>
       </td>
-      <td style="max-width: 500px; min-width: 500px">
+      <td style="max-width: 300px; min-width: 300px">
         <h1>ИЛИ БЕЗ РЕГИСТРАЦИИ</h1>
         <a (click)="gotoFirst()" >
-          <img src="../../img/person.svg"  height="400" width="400" style="margin: 30px; cursor: pointer"></a>
+          <img src="../../img/person.svg"  height="200" width="200" style="margin: 30px; cursor: pointer"></a>
       </td>
     </table>
   </div>

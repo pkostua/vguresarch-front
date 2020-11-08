@@ -1,4 +1,4 @@
-<div id="{{'drag' + id}}" class="drag-element" style="z-index: {{item.zIndex}}"
+<div id="{{'drag' + id}}" class="drag-element" style="z-index: {{item.zedIndex}}"
      [style.transform]="'translate3d(' +item.positionX+'px,' +item.positionY+'px,0px) ' +  'rotate(' + item.rotate * 90 + 'deg)'"
      [cdkDragBoundary]="container" cdkDrag
      (cdkDragReleased)="onDrop($event)"

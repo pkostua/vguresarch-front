@@ -5,7 +5,7 @@
     Правильных или неправильных ответов не существует; каждый вариант встречается в реальной жизни. Спасибо!</h4>
   <div style="display: inline-block;">
     <h2 *ngIf="loading">Загрузка</h2>
-    <app-question-row  *ngFor="let q of testList;let i=index" [text]="q.text" [ansList]="q.ansList" [id]="'testRow'+i"
+    <app-question-row  *ngFor="let q of testList;let i=index" (valueChange)="onChange()" [text]="q.text" [ansList]="q.ansList" [id]="'testRow'+i"
     [(value)]="q.ans" [submitted]="submitted"></app-question-row>
     <button class="btn btn-outline-primary" style="margin: 40px" type="button" (click)="submit()" [disabled]="loading">Готово</button>
 

@@ -51,4 +51,8 @@ export class TestRouterComponent implements OnInit {
     return positionTitle(name)
   }
 
+  onTabChange(e){
+    setTimeout(()=>this.mainService.currentChild = this.mainService.targetChildren[e.index],500)
+  }
+
 }

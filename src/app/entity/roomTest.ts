@@ -11,5 +11,5 @@ export interface RoomItemModel{
   initX: number | null,
   initY: number | null
   rotate: number
-  zIndex: number
+  zedIndex: number
 }
