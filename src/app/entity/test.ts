@@ -53,23 +53,23 @@ export class SppAdultTestResult{
 }
 
 export const familyPosition = [
-  {name:'BABY', title: "малыш", isAdult:false},
-  {name:'SADIK', title:"ходит в садик", isAdult:false},
-  {name:'FIRST_CLASS', title:"1 класс", isAdult:false},
-  {name:'SECOND_CLASS', title:"2 класс", isAdult:false},
-  {name:'THIRD_CLASS', title:"3 класс", isAdult:false},
-  {name:'FORTH_CLASS', title:"4 класс", isAdult:false},
-  {name:'FIVE_CLASS_AND_MORE', title:"5 класс и старше", isAdult:false},
-  {name:'STUDENT', title:"студент", isAdult:false},
-  {name:'MAMA', title:"мама", isAdult:true},
-  {name:'PAPA', title:"папа", isAdult:true},
-  {name:'GANNY', title:"бабушка", isAdult:true},
-  {name:'GRANDFATHER', title:"дедеушка", isAdult:true},
-  {name:'ANT', title:"тётя", isAdult:true},
-  {name:'ANCL', title:"дядя", isAdult:true},
-  {name:'OTHER', title:"другой родственник", isAdult:true},
-  {name:'BROTHER', title: "брат старше 18 лет", isAdult:true},
-  {name:'SISTER', title: "сестра старше 18 лет", isAdult:true}]
+  {name:'BABY', title: "малыш", isAdult:false , isTarget: false},
+  {name:'SADIK', title:"ходит в садик", isAdult:false, isTarget: false},
+  {name:'FIRST_CLASS', title:"1 класс", isAdult:false, isTarget: true},
+  {name:'SECOND_CLASS', title:"2 класс", isAdult:false, isTarget: true},
+  {name:'THIRD_CLASS', title:"3 класс", isAdult:false, isTarget: true},
+  {name:'FORTH_CLASS', title:"4 класс", isAdult:false, isTarget: this},
+  {name:'FIVE_CLASS_AND_MORE', title:"5 класс и старше", isAdult:false, isTarget: false},
+  {name:'STUDENT', title:"студент", isAdult:false, isTarget: false},
+  {name:'MAMA', title:"мама", isAdult:true, isTarget: false},
+  {name:'PAPA', title:"папа", isAdult:true, isTarget: false},
+  {name:'GANNY', title:"бабушка", isAdult:true, isTarget: false},
+  {name:'GRANDFATHER', title:"дедеушка", isAdult:true, isTarget: false},
+  {name:'ANT', title:"тётя", isAdult:true, isTarget: false},
+  {name:'ANCL', title:"дядя", isAdult:true, isTarget: false},
+  {name:'OTHER', title:"другой родственник", isAdult:true, isTarget: false},
+  {name:'BROTHER', title: "брат старше 18 лет", isAdult:true, isTarget: false},
+  {name:'SISTER', title: "сестра старше 18 лет", isAdult:true, isTarget: false}]
 
 export const positionTitle = (name:string) =>{
   if(!name) return null

@@ -1,7 +1,7 @@
-<span>Конмнатный тест проходит {{getUserName()}}</span>
+<span>Тест-игру "Моя территория" проходит {{getUserName()}}</span>
 <button class="btn btn-outline-primary" style="margin-left: 40px" type="button" (click)="submit()" [disabled]="loading">Готово</button>
 
-<div style="position: absolute; background: white; height: 725px" >
+<div style="position: absolute; background: white; height: 725px; overflow: auto" >
   <div *ngFor="let i of allItems" class="preview" (click)="addItem(i)">
     <img style="width: 50px" src="{{i.img}}">
   </div>

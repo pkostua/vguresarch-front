@@ -33,6 +33,13 @@ export class MainService {
       return find && !find.isAdult
     });
   }
+
+  get targetChildren(){
+    return this.user.familyMembers.filter(m=>{
+      const find = familyPosition.find(p=>p.name === m.familyPosition)
+      return find && find.isTarget
+    });
+  }
   get adults() {
     return this.user.familyMembers.filter(m=>{
       const find = familyPosition.find(p=>p.name === m.familyPosition)
@@ -100,8 +107,8 @@ export class MainService {
   postRoomData(data: RoomItemModel[]) {
     let url = this.url + 'room?pre=0'
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
-    if(this.currentAdult) url += '&parentId='+this.currentAdult.id
-    if(this.currentChild) url += '&childId='+this.currentChild.id
+    if(this.currentAdult) url += '&memberId='+this.currentAdult.id
+    else if(this.currentChild) url += '&memberId='+this.currentChild.id
     return this.httpClient.post<any>(url,{data:data})
   }
 }

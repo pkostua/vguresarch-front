@@ -88,6 +88,10 @@ export class FirstPageComponent implements OnInit {
       this.error ='Укажите хотябы одного ребенка'
       return
     }
+    if(this.children.filter(it=>familyPosition.find(p=>p.name==it.familyPosition).isTarget).length == 0){
+      this.error ='Укажите хотябы одного ребенка 1-4 класса'
+      return
+    }
     this.mainService.user.familyMembers=this.children;
     this.adults.forEach(m=>{
       this.mainService.user.familyMembers.push(m)

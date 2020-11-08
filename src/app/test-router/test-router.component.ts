@@ -14,7 +14,8 @@ export class TestRouterComponent implements OnInit {
   constructor(public mainService: MainService, private router: Router) { }
 
   ngOnInit() {
-    if(!this.mainService.currentChild)this.mainService.currentChild=this.mainService.children[0]
+    this.mainService.currentAdult = null
+    if(!this.mainService.currentChild)this.mainService.currentChild=this.mainService.targetChildren[0]
   }
 
   gotoSppChildren(){
@@ -26,7 +27,8 @@ export class TestRouterComponent implements OnInit {
     this.router.navigate(['sppAdult'])
   }
 
-  gotoRoomTest(){
+  gotoRoomTest(parent: FamilyMember = null){
+    this.mainService.currentAdult = parent
     this.router.navigate(['room-test'])
   }
 
@@ -39,12 +41,6 @@ export class TestRouterComponent implements OnInit {
   }
   gotoFirst(){
     this.router.navigate(['first'])
-  }
-  getUserName(){
-    return this.mainService.user.firstName
-  }
-  get children(){
-    return this.mainService.children
   }
 
   get adults(){
