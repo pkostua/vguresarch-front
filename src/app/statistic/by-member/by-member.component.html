@@ -45,7 +45,7 @@
     <ng-container *ngFor="let item of items">
       <tr *ngIf="item.sppAdultTestListChild.length || item.anketaList.length || item.roomTestList.length || item.sppChildrenTestListChild.length">
         <td *ngIf="item.user.tmpUserId">{{item.user.tmpUserId}}</td>
-        <td *ngIf="item.user.account"><a href="{{item.user.account.profileUrl}}" target="_blank">{{item.user.account.displayName}}</a></td>
+        <td *ngIf="item.user.account"><a href="{{item.user.account.profileUrl}}" target="_blank">{{item.user.account.imageUrl}}</a></td>
         <td>{{item.name}}</td>
         <td>МАМА</td>
         <td>{{item.anketaList.length? item.anketaList[0].ball:''}}</td>
@@ -80,10 +80,10 @@
 
 
       </tr>
-      <ng-container *ngIf="item.sppAdultTestListParent.length ">
+      <ng-container *ngIf="item.sppAdultTestListParent.length && item.familyPosition != 'MAMA'">
         <tr *ngFor="let t of item.sppAdultTestListParent">
           <td *ngIf="item.user.tmpUserId">{{item.user.tmpUserId}}</td>
-          <td *ngIf="item.user.account"><a href="{{item.user.account.profileUrl}}" target="_blank">{{item.user.account.displayName}}</a></td>
+          <td *ngIf="item.user.account"><a href="{{item.user.account.profileUrl}}" target="_blank">{{item.user.account.imageUrl}}</a></td>
           <td>{{t.child.name}}</td>
           <td>{{item.familyPosition}}, {{item.age}}</td>
           <td></td>
