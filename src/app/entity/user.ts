@@ -1,3 +1,7 @@
+import {SppAdultTestResult, SppChildrenTestResult} from './test';
+import {Anketa} from './anketa';
+import {RoomTestModel} from './roomTest';
+
 export class User {
   id: number;
   firstName: string;
@@ -8,6 +12,7 @@ export class User {
   account: UserAccount | null;
   tmpUserId: string | null
   tempUser: boolean = false;
+  admin: boolean = false
 }
 
 export class UserAccount {
@@ -37,5 +42,20 @@ export class FamilyMember {
 export enum Sex {
   BOY='Мальчик',
   GIRL='Девочка'
+
+}
+
+export interface FamilyMemberDto {
+  name: string,
+  age: number,
+  sex: string
+  familyPosition: string
+  user: User
+  sppChildrenTestListChild: SppChildrenTestResult[],
+  sppAdultTestListParent: SppAdultTestResult[],
+  sppAdultTestListChild: SppAdultTestResult[],
+  roomTestList: RoomTestModel[]
+  anketaList:Anketa[]
+  mamaSppAdult:SppAdultTestResult
 
 }

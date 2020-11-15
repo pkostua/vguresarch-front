@@ -1,7 +1,7 @@
 <form [formGroup]="ownerForm" (ngSubmit)="onYesClick()">
   <div mat-dialog-content>
     <select id="owner" name="owner" class="form-control" formControlName="owner" required>
-      <option [value]="null">Общее</option>
+      <option disabled [value]="null">Чьё (кто) это?</option>
       <option *ngFor="let m of members" [ngValue]="m">{{m.name?m.name:positionTitle(m.familyPosition)+'('+m.age+')'}}</option>
     </select>
   </div>

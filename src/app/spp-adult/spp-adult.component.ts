@@ -4,6 +4,7 @@ import {SppAdultTestResult, Test} from '../entity/test';
 import {Router} from '@angular/router';
 import {TestResultDialogComponent} from '../test-result-dialog/test-result-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {InfoDialogComponent} from '../info-dialog/info-dialog.component';
 
 @Component({
   selector: 'app-spp-adult',
@@ -29,8 +30,10 @@ export class SppAdultComponent implements OnInit {
         if(ans && ans.data) {
           this.testList.forEach((t) => {
             let find = ans.data.find(a => a.id == t.id)
-            if (find) t.ans = find.ans
+            if (find && t.ansList.includes(find.ans)) t.ans = find.ans
           })
+        }else {
+          this.showInfoDialog()
         }
       },error => {this.loading = false},()=>this.loading = false)
       //this.testList.sort((a,b)=>a.id-b.id)
@@ -52,6 +55,16 @@ export class SppAdultComponent implements OnInit {
     })
   }
 
+  showInfoDialog(){
+    const dialogRef = this.dialog.open(InfoDialogComponent, {
+      data: `<h4>Уважаемый родитель! Предлагаемый Вам опросник содержит утверждения о воспитании детей.</h4>
+  <p>"+" если Вы в общем согласны с ними, то отвечайте</p>
+  <p>"-" если Вы в общем не согласны</p>
+  <p>"не знаю" если очень трудно выбрать, старайтесь, чтобы таких ответов было не больше 5.</p>
+  <h4>В опроснике нет "правильных" или "неправильных" утверждений. Отвечайте так, как Вы сами думаете. Этим вы поможете провести достоверное исследование.
+    </h4>`
+    })
+  }
 
   submit(){
     this.submitted = true;

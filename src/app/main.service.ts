@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import {FamilyMember,  User} from './entity/user';
+import {FamilyMember, FamilyMemberDto, User} from './entity/user';
 import {familyPosition, SppAdultTestResult, SppChildrenTestResult, Test, TestAns} from './entity/test';
 import {Anketa, AnketaQuestion} from './entity/anketa';
 import {RoomItemModel} from './entity/roomTest';
@@ -24,7 +24,8 @@ export class MainService {
     familyMembers:[],
     tempUser: true,
     tmpUserId: this.savedTmpUserId?this.savedTmpUserId:new Date().getTime().toString(),
-    account:null
+    account:null,
+    admin: false
   };
 
   get children(){
@@ -140,5 +141,9 @@ export class MainService {
     if(this.currentAdult) url += '&memberId='+this.currentAdult.id
     else if(this.currentChild) url += '&memberId='+this.currentChild.id
     return this.httpClient.get<RoomItemModel[]>(url)
+  }
+
+  statisticByMember() {
+    return this.httpClient.get<FamilyMemberDto[]>(this.url + 'admin/byMember?tmpUserId='+this.user.tmpUserId)
   }
 }

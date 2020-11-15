@@ -12,4 +12,11 @@ export interface RoomItemModel{
   initY: number | null
   rotate: number
   zedIndex: number
+  type: string
+}
+
+export interface RoomTestModel {
+ itemsCount: number
+ myCount: number
+  aliveCount: number
 }

@@ -18,6 +18,10 @@ export class TestRouterComponent implements OnInit {
     if(!this.mainService.currentChild)this.mainService.currentChild=this.mainService.targetChildren[0]
   }
 
+  gotoStat(){
+    this.router.navigate(['statistic/byMember'])
+  }
+
   gotoSppChildren(){
     this.router.navigate(['sppChildren'])
   }
@@ -44,7 +48,7 @@ export class TestRouterComponent implements OnInit {
   }
 
   get adults(){
-    return this.mainService.adults.filter(m=>["MAMA","PAPA"].includes(m.familyPosition))
+    return this.mainService.adults
   }
 
   positionTitle(name:string){

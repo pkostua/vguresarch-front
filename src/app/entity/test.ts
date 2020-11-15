@@ -49,6 +49,9 @@ export class SppAdultTestResult{
 
   user: User | null
 
+  parent: FamilyMember
+  child: FamilyMember
+
 
 }
 

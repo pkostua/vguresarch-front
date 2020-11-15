@@ -1,0 +1,12 @@
+td{
+  border: 1px solid darkblue;
+  text-align: center;
+  padding: 2px;
+}
+th{
+  background: darkblue;
+  border: 1px solid white;
+  color: white;
+  text-align: center;
+  padding: 2px;
+}

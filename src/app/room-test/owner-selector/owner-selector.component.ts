@@ -1,8 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {RoomItemModel} from '../../entity/roomTest';
 import {MainService} from '../../main.service';
-import {FamilyMember} from '../../entity/user';
+import {FamilyMember, Sex} from '../../entity/user';
 import {familyPosition, positionTitle} from '../../entity/test';
 import {FormControl, FormGroup} from '@angular/forms';
 
@@ -11,7 +11,7 @@ import {FormControl, FormGroup} from '@angular/forms';
   templateUrl: './owner-selector.component.html',
   styleUrls: ['./owner-selector.component.css']
 })
-export class OwnerSelectorComponent {
+export class OwnerSelectorComponent  implements AfterViewInit{
 
   constructor(
     public mainService: MainService,
@@ -23,18 +23,35 @@ export class OwnerSelectorComponent {
     owner: new FormControl(),
   });
 
+  ngAfterViewInit() {
+    this.ownerForm.setValue({"owner": null})
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   onYesClick(): void {
-    this.data.owner = this.ownerForm.value.owner
+    if(!this.ownerForm.value.owner) return
+    this.data.owner = this.ownerForm.value.owner.id == 0?null:this.ownerForm.value.owner
     this.dialogRef.close(this.data);
   }
 
   get members(){
-    return this.mainService.user.familyMembers
+    let  members: FamilyMember[] = [{
+      id: 0,
+      name: "Общее",
+      age:null,
+      sex: null,
+      familyPosition: null,
+      hasAnketa: null,
+      hasRoom: null,
+      hasSppChildren: null,
+      sppAdultList: [],
+    }]
+     return members.concat(this.mainService.user.familyMembers)
   }
+
 
   positionTitle(name:string){
     return positionTitle(name)

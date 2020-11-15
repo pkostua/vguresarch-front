@@ -4,6 +4,7 @@ import {MainService} from '../main.service';
 import {Router} from '@angular/router';
 import {TestResultDialogComponent} from '../test-result-dialog/test-result-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {InfoDialogComponent} from '../info-dialog/info-dialog.component';
 
 @Component({
   selector: 'app-spp-children',
@@ -29,8 +30,10 @@ export class SppChildrenComponent implements OnInit {
         if(ans && ans.data) {
           this.testList.forEach((t) => {
             let find = ans.data.find(a => a.id == t.id)
-            if (find) t.ans = find.ans
+            if (find && t.ansList.includes(find.ans)) t.ans = find.ans
           })
+        }else{
+          this.showInfoDialog()
         }
       },error => {this.loading = false},()=>this.loading = false)
       //this.testList.sort((a,b)=>a.id-b.id)
@@ -43,6 +46,16 @@ export class SppChildrenComponent implements OnInit {
 
   get other(){
     return this.mainService.user.familyMembers.find(m=>m.name!=this.iam.name)
+  }
+
+  showInfoDialog(){
+    const dialogRef = this.dialog.open(InfoDialogComponent, {
+      data: `<h4>Инструкция: Вам предлагается оценить утверждения теста. <p>
+    Если содержание утверждения относиться к вашему ребенку, следует ответить «Да».</p>
+    <p>Если в его жизни подобных случаев не было, выберите «Нет».</p>
+    Правильных или неправильных ответов не существует; каждый вариант встречается в реальной жизни. Если сомневаетесь в ответе, можете уточнить его у своего ребёнка.
+    Спасибо!</h4>`
+    })
   }
 
   onChange(){

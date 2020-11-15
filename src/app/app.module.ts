@@ -22,6 +22,8 @@ import { AnketaComponent } from './anketa/anketa.component';
 import { CheckIconComponent } from './check-icon/check-icon.component';
 import { TestResultDialogComponent } from './test-result-dialog/test-result-dialog.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { InfoDialogComponent } from './info-dialog/info-dialog.component';
+import { ByMemberComponent } from './statistic/by-member/by-member.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     AnketaComponent,
     CheckIconComponent,
     TestResultDialogComponent,
+    InfoDialogComponent,
+    ByMemberComponent,
   ],
   imports: [
     BrowserModule,

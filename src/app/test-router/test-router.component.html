@@ -3,6 +3,7 @@
   <h4>Спасибо, что согласились участвовать!</h4>
     <h4><button class="btn btn-outline-primary" type="button" (click)="gotoFirst()"
               *ngIf="!mainService.user.tempUser">Изменить анкету</button></h4>
+  <button class="btn btn-outline-primary" *ngIf="mainService.user.admin" (click)="gotoStat()">Статистика</button>
   <div>
 
     <mat-tab-group mat-align-tabs="center" (selectedTabChange)="onTabChange($event)" [selectedIndex]="mainService.targetChildren.indexOf(this.mainService.currentChild)">
@@ -22,8 +23,12 @@
               </p> <p> Родители - обязательно, остальные - по желанию!
             </p>
               <p class="card-text">(выбран {{child.name}}) </p>
-              <button *ngFor="let c of adults" class="btn btn-outline-primary" (click)="gotoSppAdult(c)" style="margin: 4px">
-                <app-check-icon *ngIf="mainService.currentChild.sppAdultList && mainService.currentChild.sppAdultList.includes(c.id)"></app-check-icon>
+              <button *ngFor="let c of adults"
+                      [ngClass]="{btn: true,
+                      'btn-outline-primary': !(mainService.currentChild.sppAdultList && mainService.currentChild.sppAdultList.includes(c.id)),
+                      'btn-success': mainService.currentChild.sppAdultList && mainService.currentChild.sppAdultList.includes(c.id)
+                      }"
+                      (click)="gotoSppAdult(c)" style="margin: 4px">
                 Проходит {{positionTitle(c.familyPosition)}} ({{c.age}})</button>
             </div>
           </div>
@@ -36,10 +41,14 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">Опросник для мамы</h5>
-              <p class="card-text"> или взрослого, который больше всего времени проводит с ребенком</p>
-              <button class="btn btn-outline-primary" (click)="gotoSppChildren()">
-                Пройти (выбран {{child.name}})
-                <app-check-icon style="color: green" *ngIf="mainService.currentChild.hasSppChildren"></app-check-icon>
+              <p class="card-text"> проходит мама или взрослый, который больше всего времени проводит с ребенком</p>
+              <button class="btn btn-outline-primary" (click)="gotoSppChildren()"
+                      [ngClass]="{btn: true,
+                      'btn-outline-primary': !(mainService.currentChild.hasSppChildren),
+                      'btn-success': mainService.currentChild.hasSppChildren
+                      }"
+              >
+                Проходит мама (выбран {{child.name}})
               </button>
             </div>
           </div>
@@ -52,10 +61,14 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">Анкета для мамы</h5>
-              <p class="card-text"> или взрослого, который больше всего времени проводит с ребенком</p>
-              <button class="btn btn-outline-primary" (click)="gotoAnketa()">
-                Пройти (выбран {{child.name}})
-                <app-check-icon style="color: green" *ngIf="mainService.currentChild.hasAnketa"></app-check-icon>
+              <p class="card-text"> отвечает мама или взрослый, который больше всего времени проводит с ребенком</p>
+              <button class="btn btn-outline-primary" (click)="gotoAnketa()"
+                      [ngClass]="{btn: true,
+                      'btn-outline-primary': !(mainService.currentChild.hasAnketa),
+                      'btn-success': mainService.currentChild.hasAnketa
+                      }"
+              >
+                Проходит мама (выбран {{child.name}})
               </button>
             </div>
           </div>
@@ -72,12 +85,20 @@
                 Большая просьба не отвлекать, не ругать, не делать замечания детям во время прохождения задания, это может повлиять на результаты. Ребёнок должен быть в хорошем настроении, не болеть, не быть уставшим.</p>
               <p class="card-text">Проходит {{mainService.currentChild.name}}, остальные - по желанию!
               </p>
-              <button class="btn btn-outline-primary" (click)="gotoRoomTest()">
-                Начать ({{child.name}})
-                <app-check-icon style="color: green" *ngIf="mainService.currentChild.hasRoom"></app-check-icon>
+              <button class="btn btn-outline-primary" (click)="gotoRoomTest()"
+                      [ngClass]="{btn: true,
+                      'btn-outline-primary': !(mainService.currentChild.hasRoom),
+                      'btn-success': mainService.currentChild.hasRoom
+                      }"
+              >
+                Проходит {{child.name}}
               </button><br>
-              <button *ngFor="let c of adults" class="btn btn-outline-primary" (click)="gotoRoomTest(c)" style="margin: 4px">
-                <app-check-icon *ngIf="c.hasRoom"></app-check-icon>
+              <button *ngFor="let c of adults" class="btn btn-outline-primary" (click)="gotoRoomTest(c)" style="margin: 4px"
+                      [ngClass]="{btn: true,
+                      'btn-outline-primary': !(c.hasRoom),
+                      'btn-success': c.hasRoom
+                      }"
+              >
                 Проходит {{positionTitle(c.familyPosition)}} ({{c.age}})</button>
             </div>
           </div>
