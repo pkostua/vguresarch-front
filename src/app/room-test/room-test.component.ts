@@ -19,9 +19,9 @@ export class RoomTestComponent implements OnInit {
 
 
   allItems: RoomItemModel[]=[
-    {id: 1, img:"../../img/carpet1.png", name:"Ковер с ворсом", owner: null, square: 510, positionX: null, positionY: null, initX: null, initY: null, rotate:0, zedIndex: 50, type: null},
-    {id: 2, img:"../../img/carpet2.png", name:"Ковер с рисунком", owner: null, square: 760, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 50, type: null},
-    {id: 3, img:"../../img/sofa.png", name:"Диван", owner: null, square: 297, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 100, type: null},
+    {id: 1, img:"../../img/carpet1.png", name:"Ковер с ворсом", owner: null, square: 510, positionX: null, positionY: null, initX: null, initY: null, rotate:0, zedIndex: 10, type: null},
+    {id: 2, img:"../../img/carpet2.png", name:"Ковер с рисунком", owner: null, square: 760, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 10, type: null},
+    {id: 3, img:"../../img/sofa.png", name:"Диван", owner: null, square: 297, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 60, type: null},
     {id: 4, img:"../../img/bed_big.png", name:"Кровать 2х спальная", owner: null, square: 319, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 55, type: null},
     {id: 5, img:"../../img/bed_small.png", name:"Кровать 1 спальная", owner: null, square: 222, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 55, type: null},
     {id: 6, img:"../../img/table1.png", name:"Стол большой", owner: null, square: 152, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 95, type: null},
@@ -42,10 +42,10 @@ export class RoomTestComponent implements OnInit {
     {id: 21, img:"../../img/clothes1.png", name:"Одежда светлая", owner: null, square: 35, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 100, type: null},
     {id: 22, img:"../../img/clothes2.png", name:"Одежда темная", owner: null, square: 35, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 100, type: null},
     {id: 23, img:"../../img/shoes.png", name:"Обувь", owner: null, square: 10, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 55, type: null},
-    {id: 24, img:"../../img/dog.png", name:"Собака", owner: null, square: 112, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 100, type: 'alive'},
+    {id: 24, img:"../../img/dog.png", name:"Собака", owner: null, square: 112, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 90, type: 'alive'},
     {id: 25, img:"../../img/cat.png", name:"Кошка", owner: null, square: 26, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 100, type: 'alive'},
     {id: 26, img:"../../img/bike.png", name:"Велосипед большой", owner: null, square: 240, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 100, type: null},
-    {id: 27, img:"../../img/children_bike.png", name:"Велосипед детский", owner: null, square: 152, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 100, type: null},
+    {id: 27, img:"../../img/children_bike.png", name:"Велосипед детский", owner: null, square: 152, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 80, type: null},
     {id: 28, img:"../../img/plant.png", name:"Растение", owner: null, square: 94, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 100, type: null},
     {id: 29, img:"../../img/man_stand.png", name:"Мужчина стоит", owner: null, square: 90, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 90, type: 'alive'},
     {id: 30, img:"../../img/woman_stand.png", name:"Женщина стоит", owner: null, square: 90, positionX: null, positionY: null,initX: null, initY: null,  rotate:0, zedIndex: 90, type: 'alive'},
@@ -69,7 +69,10 @@ export class RoomTestComponent implements OnInit {
 
   ngOnInit() {
     this.mainService.getRoomTestData().subscribe((ans)=>{
-      if(ans && ans.length)this.items = ans
+      if(ans && ans.length){
+        ans.sort((a,b)=>a.id-b.id)
+        this.items = ans
+      }
       else this.showInfoDialog()
     })
   }

@@ -34,13 +34,24 @@ export class RoomItemComponent {
     return positionTitle(name)
   }
 
+  get x (){
+    if(this.item.initX) return this.item.initX + this.item.positionX
+    else return this.item.positionX
+  }
+
+  get y (){
+    if(this.item.initX) return this.item.initY + this.item.positionY
+    else return this.item.positionY
+  }
 
   onDrop(event: CdkDragRelease){
     let split = event.source.element.nativeElement.style.transform.replace("translate3d(", "").split(",")
     let x = split[0]?Number(split[0].replace("px", "")):0
     let y = split[1]?Number(split[1].replace("px", "")):0
-    this.item.initX = event.source.element.nativeElement.offsetLeft
-    this.item.initY = event.source.element.nativeElement.offsetTop
+    //this.item.initX = event.source.element.nativeElement.offsetLeft
+    //this.item.initY = event.source.element.nativeElement.offsetTop
+    this.item.initX = null
+    this.item.initY = null
     this.item.positionY = y
     this.item.positionX = x
   }

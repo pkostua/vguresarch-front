@@ -61,7 +61,7 @@ export const familyPosition = [
   {name:'FIRST_CLASS', title:"1 класс", isAdult:false, isTarget: true},
   {name:'SECOND_CLASS', title:"2 класс", isAdult:false, isTarget: true},
   {name:'THIRD_CLASS', title:"3 класс", isAdult:false, isTarget: true},
-  {name:'FORTH_CLASS', title:"4 класс", isAdult:false, isTarget: this},
+  {name:'FORTH_CLASS', title:"4 класс", isAdult:false, isTarget: true},
   {name:'FIVE_CLASS_AND_MORE', title:"5 класс и старше", isAdult:false, isTarget: false},
   {name:'STUDENT', title:"студент", isAdult:false, isTarget: false},
   {name:'MAMA', title:"мама", isAdult:true, isTarget: false},

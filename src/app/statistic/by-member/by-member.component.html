@@ -7,7 +7,7 @@
       <th rowspan="2">Анкета</th>
       <th colspan="4">Опросник для мамы</th>
       <th colspan="20">Опросник для родителей</th>
-      <th colspan="3">Моя территория</th>
+      <th colspan="6">Моя территория</th>
     </tr>
     <tr>
       <th>СФТ</th>
@@ -39,6 +39,9 @@
       <th>Вещей</th>
       <th>Моих</th>
       <th>Живых</th>
+      <th>пл. моих</th>
+      <th>пл. общих</th>
+      <th>пл. других</th>
     </tr>
   </thead>
   <tbody>
@@ -77,6 +80,9 @@
         <td>{{item.roomTestList.length? item.roomTestList[0].itemsCount:''}}</td>
         <td>{{item.roomTestList.length? item.roomTestList[0].myCount:''}}</td>
         <td>{{item.roomTestList.length? item.roomTestList[0].aliveCount:''}}</td>
+        <td>{{item.roomTestList.length? item.roomTestList[0].mySquare:''}}</td>
+        <td>{{item.roomTestList.length? item.roomTestList[0].collectiveSquare:''}}</td>
+        <td>{{item.roomTestList.length? item.roomTestList[0].otherSquare:''}}</td>
 
 
       </tr>
@@ -114,6 +120,9 @@
           <td>{{item.roomTestList.length? item.roomTestList[0].itemsCount:''}}</td>
           <td>{{item.roomTestList.length? item.roomTestList[0].myCount:''}}</td>
           <td>{{item.roomTestList.length? item.roomTestList[0].aliveCount:''}}</td>
+          <td>{{item.roomTestList.length? item.roomTestList[0].mySquare:''}}</td>
+          <td>{{item.roomTestList.length? item.roomTestList[0].collectiveSquare:''}}</td>
+          <td>{{item.roomTestList.length? item.roomTestList[0].otherSquare:''}}</td>
         </tr>
       </ng-container>
     </ng-container>

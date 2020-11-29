@@ -19,4 +19,7 @@ export interface RoomTestModel {
  itemsCount: number
  myCount: number
   aliveCount: number
+  mySquare: number
+  collectiveSquare: number
+  otherSquare: number
 }

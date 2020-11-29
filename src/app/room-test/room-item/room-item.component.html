@@ -1,9 +1,9 @@
 <div id="{{'drag' + id}}" class="drag-element" style="z-index: {{item.zedIndex}}"
-     [style.transform]="'translate3d(' +item.positionX+'px,' +item.positionY+'px,0px) ' +  'rotate(' + item.rotate * 90 + 'deg)'"
+     [style.transform]="'translate3d(' +x+'px,' +y+'px,0px) ' +  'rotate(' + item.rotate * 90 + 'deg)'"
      [cdkDragBoundary]="container" cdkDrag
      (cdkDragReleased)="onDrop($event)"
      (cdkDragStarted)="dragStart($event)">
-    <img src="{{item.img}}"  id="{{'img' + id}}" />
+    <img src="{{item.img}}"  id="{{'img' + id}}" title="{{item.name+', '+ (item.owner?('владелец: '+(item.owner.name?item.owner.name:positionTitle(item.owner.familyPosition))):'общее')}}"/>
 
     <div style="position: absolute; bottom: -17px; right: -17px; background: transparent; z-index: 99; transform: rotate({{((4-item.rotate)*90)+'deg'}});">
       <button (click)="rotate()" class="btn btn-sm btn-outline-info">

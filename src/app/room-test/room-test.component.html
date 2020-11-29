@@ -3,7 +3,7 @@
 
 <div style="position: absolute; background: white; height: 725px; overflow: auto" >
   <div *ngFor="let i of allItems" class="preview" (click)="addItem(i)">
-    <img style="width: 50px" src="{{i.img}}">
+    <img style="width: 50px" src="{{i.img}}" title="{{i.name}}">
   </div>
 </div>
 <div style="background: url(../../img/houseBackground.png); width: 1393px; height: 725px;padding-top: 20px ">
