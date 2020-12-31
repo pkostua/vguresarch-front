@@ -5,7 +5,7 @@
       <th rowspan="2">Ребенок</th>
       <th rowspan="2">Взрослый</th>
       <th rowspan="2">Анкета</th>
-      <th colspan="4">Опросник для мамы</th>
+      <th colspan="6">Опросник для мамы</th>
       <th colspan="20">Опросник для родителей</th>
       <th colspan="6">Моя территория</th>
     </tr>
@@ -14,6 +14,8 @@
       <th>СТ</th>
       <th>СМВ</th>
       <th>СП</th>
+      <th>CC</th>
+      <th>CTC</th>
 
       <th>ГПЛ</th>
       <th>ГМИН</th>
@@ -56,6 +58,8 @@
         <td>{{item.sppChildrenTestListChild.length? item.sppChildrenTestListChild[0].st:''}}</td>
         <td>{{item.sppChildrenTestListChild.length? item.sppChildrenTestListChild[0].smv:''}}</td>
         <td>{{item.sppChildrenTestListChild.length? item.sppChildrenTestListChild[0].sp:''}}</td>
+        <td>{{item.sppChildrenTestListChild.length? item.sppChildrenTestListChild[0].ss:''}}</td>
+        <td>{{item.sppChildrenTestListChild.length? item.sppChildrenTestListChild[0].sts:''}}</td>
         <td>{{item.mamaSppAdult? item.mamaSppAdult.gpl:''}}</td>
         <td>{{item.mamaSppAdult? item.mamaSppAdult.gmin:''}}</td>
         <td>{{item.mamaSppAdult? item.mamaSppAdult.ypl:''}}</td>
@@ -92,6 +96,8 @@
           <td *ngIf="item.user.account"><a href="{{item.user.account.profileUrl}}" target="_blank">{{item.user.account.imageUrl}}</a></td>
           <td>{{t.child.name}}</td>
           <td>{{item.familyPosition}}, {{item.age}}</td>
+          <td></td>
+          <td></td>
           <td></td>
           <td></td>
           <td></td>

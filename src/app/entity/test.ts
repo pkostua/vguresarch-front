@@ -19,6 +19,8 @@ export class SppChildrenTestResult{
   st: number //Суверенность территории
   smv: number //Суверенность мира вещей
   sp: number //Суверенность привычек
+  ss:number
+  sts:number
   user: User | null
   familyMember: FamilyMember | null
 }
