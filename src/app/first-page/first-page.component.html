@@ -1,12 +1,12 @@
 <div style=" text-align: center; height: 100vh">
   <div style="padding :10px; align-items: center; border: 1px solid; border-radius: 10px; vertical-align: middle; background: white; opacity: 80%; display: inline-block">
     <div>
-      <h1>ЗДРАВСТВУЙТЕ {{mainService.user?mainService.user.firstName:'АНОНИМНЫЙ НЕКТО'}}</h1>
-      <h2>РАССКАЖИТЕ НАМ О ВАШЕЙ СЕМЬЕ</h2>
+      <h1> {{mainService.user?mainService.user.firstName:'АНОНИМНЫЙ НЕКТО'}}</h1>
+      <h2>УКАЖИТЕ ВСЕХ ЧЛЕНОВ СЕМЬИ</h2>
     </div>
     <div>
       <form [formGroup]="addChildForm" (ngSubmit)="onAddChild()" novalidate>
-        <h2>ДОБАВЬТЕ ДЕТЕЙ ВАШЕЙ СЕМЬИ</h2>
+        <h4>ДЕТИ:</h4>
           <div class="input-group input-group-lg mb-3" style="width: 700px">
             <input placeholder="имя" id="empl-name" class="form-control" formControlName="name" required/>
             <input id="empl-age" placeholder="возраст" type="number" [max]="150" [min]="3" class="form-control" formControlName="age" required/>
@@ -18,7 +18,12 @@
               <option *ngFor="let p of childPositions" [value]="p.name">{{p.title}}</option>
             </select>
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" id="button-addon2" type="submit">Добавить</button>
+              <button class="btn btn-primary" id="button-addon2" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+              </button>
             </div>
           </div>
         </form>
@@ -32,21 +37,30 @@
             <input disabled [value]="positionTitle(su.familyPosition)" class="form-control"/>
 
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" (click)="onDeleteChild(su)" type="button" >Удалить</button>
+              <button class="btn btn-warning" (click)="onDeleteChild(su)" type="button" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
       </div>
     <div>
       <form [formGroup]="addAdultForm" (ngSubmit)="onAddAdult()" novalidate>
-        <h2>ДОБАВЬТЕ ВЗРОСЛЫХ ВАШЕЙ СЕМЬИ</h2>
+        <h4>ВЗРОСЛЫЕ:</h4>
         <div class="input-group input-group-lg" style="width: 700px">
           <select id="familyPositionAdult"  class="form-control" required formControlName="familyPosition">
             <option *ngFor="let p of adultPositions" [value]="p.name">{{p.title}}</option>
           </select>
           <input id="adult-age" placeholder="возраст" type="number" [max]="150" [min]="3" class="form-control" formControlName="age" required/>
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" id="button-adult" type="submit">Добавить</button>
+            <button class="btn btn-primary" id="button-adult" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+              </svg>
+            </button>
           </div>
         </div>
       </form>
@@ -56,7 +70,11 @@
           <input disabled [value]="positionTitle(su.familyPosition)" class="form-control"/>
           <input disabled [value]="su.age" class="form-control"/>
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" (click)="onDeleteAdult(su)" type="button" >Удалить</button>
+            <button class="btn btn-warning" (click)="onDeleteAdult(su)" type="button" >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+              </svg>
+            </button>
           </div>
         </div>
       </div>

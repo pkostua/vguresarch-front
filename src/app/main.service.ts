@@ -31,20 +31,20 @@ export class MainService {
   get children(){
     return this.user.familyMembers.filter(m=>{
       const find = familyPosition.find(p=>p.name === m.familyPosition)
-      return find && !find.isAdult
+      return find && !find.isAdult && !m.deleted
     });
   }
 
   get targetChildren(){
     return this.user.familyMembers.filter(m=>{
       const find = familyPosition.find(p=>p.name === m.familyPosition)
-      return find && find.isTarget
+      return find && find.isTarget && !m.deleted
     });
   }
   get adults() {
     return this.user.familyMembers.filter(m=>{
       const find = familyPosition.find(p=>p.name === m.familyPosition)
-      return find && find.isAdult
+      return find && find.isAdult && !m.deleted
     })
   }
 

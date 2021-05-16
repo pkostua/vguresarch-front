@@ -83,7 +83,7 @@ export class RoomTestComponent implements OnInit {
     this.mainService.postRoomData(this.items).subscribe(ans=>{
       this.mainService.currentChild.hasRoom = true
       const dialogRef = this.dialog.open(TestResultDialogComponent, {
-        data: "Результаты сохранены. Спасибо за участие",
+        data: "Результаты сохранены",
       });
     },error => {this.loading =false},()=>{this.loading=false})
   }

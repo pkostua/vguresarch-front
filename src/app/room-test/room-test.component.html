@@ -1,5 +1,8 @@
-<span>Тест-игру "Моя территория" проходит {{getUserName()}}. <button class="btn btn-outline-primary"(click)="showInfoDialog()">инструкция</button></span>
-<button class="btn btn-outline-primary" style="margin-left: 40px" type="button" (click)="submit()" [disabled]="loading">Готово</button>
+<div style="margin-left: 50px; background: white">
+  <span style="font-size: 22px; margin: 20px "><b>{{getUserName()}}, расставь предметы так, как если бы здесь жила твоя семья </b></span>
+  <button class="btn btn-outline-primary"(click)="showInfoDialog()">инструкция</button>
+  <button class="btn btn-primary" style="margin-left: 20px" type="button" (click)="submit()" [disabled]="loading">Готово</button>
+</div>
 
 <div style="position: absolute; background: white; height: 725px; overflow: auto" >
   <div *ngFor="let i of allItems" class="preview" (click)="addItem(i)">
