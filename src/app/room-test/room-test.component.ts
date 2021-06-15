@@ -68,13 +68,18 @@ export class RoomTestComponent implements OnInit {
   public items: RoomItemModel[] = []
 
   ngOnInit() {
-    this.mainService.getRoomTestData().subscribe((ans)=>{
-      if(ans && ans.length){
-        ans.sort((a,b)=>a.id-b.id)
-        this.items = ans
-      }
-      else this.showInfoDialog()
-    })
+    if(this.mainService.adminRoomTestData){
+      this.mainService.adminRoomTestData.sort((a,b)=>a.id-b.id)
+      this.items = this.mainService.adminRoomTestData
+      this.mainService.adminRoomTestData = null
+    }else {
+      this.mainService.getRoomTestData().subscribe((ans) => {
+        if (ans && ans.length) {
+          ans.sort((a, b) => a.id - b.id)
+          this.items = ans
+        } else this.showInfoDialog()
+      })
+    }
   }
 
 
@@ -83,7 +88,7 @@ export class RoomTestComponent implements OnInit {
     this.mainService.postRoomData(this.items).subscribe(ans=>{
       this.mainService.currentChild.hasRoom = true
       const dialogRef = this.dialog.open(TestResultDialogComponent, {
-        data: "Результаты сохранены. Спасибо за участие",
+        data: "Результаты сохранены",
       });
     },error => {this.loading =false},()=>{this.loading=false})
   }

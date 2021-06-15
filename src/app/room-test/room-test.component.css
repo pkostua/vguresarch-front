@@ -1,6 +1,6 @@
 .example-boundary {
-  width: 1160px; height: 680px; margin-left:150px;
-  border: dotted #ccc 2px;
+  width: 1000px; height: 600px; margin-left:10px;
+  border: dotted #cccccc 2px;
 }
 
 .preview:hover {

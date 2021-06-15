@@ -36,6 +36,7 @@ export class FamilyMember {
   hasRoom: boolean
   hasSppChildren: boolean
   sppAdultList: number[]
+  deleted?: boolean
 }
 
 

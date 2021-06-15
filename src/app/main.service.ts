@@ -28,23 +28,25 @@ export class MainService {
     admin: false
   };
 
+  adminRoomTestData:  RoomItemModel[] = null
+
   get children(){
     return this.user.familyMembers.filter(m=>{
       const find = familyPosition.find(p=>p.name === m.familyPosition)
-      return find && !find.isAdult
+      return find && !find.isAdult && !m.deleted
     });
   }
 
   get targetChildren(){
     return this.user.familyMembers.filter(m=>{
       const find = familyPosition.find(p=>p.name === m.familyPosition)
-      return find && find.isTarget
+      return find && find.isTarget && !m.deleted
     });
   }
   get adults() {
     return this.user.familyMembers.filter(m=>{
       const find = familyPosition.find(p=>p.name === m.familyPosition)
-      return find && find.isAdult
+      return find && find.isAdult && !m.deleted
     })
   }
 
@@ -140,6 +142,11 @@ export class MainService {
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
     if(this.currentAdult) url += '&memberId='+this.currentAdult.id
     else if(this.currentChild) url += '&memberId='+this.currentChild.id
+    return this.httpClient.get<RoomItemModel[]>(url)
+  }
+
+  getRoomTestAdminData(memberId: number) {
+    let url = this.url + 'room/data?memberId='+memberId
     return this.httpClient.get<RoomItemModel[]>(url)
   }
 

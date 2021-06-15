@@ -16,18 +16,35 @@ export class RoomItemComponent {
 
   @Output() onRemove = new EventEmitter()
 
+  showButtons: boolean = false
+
   public container:HTMLElement = document.getElementById("drop-container")
 
   remove(){
    this.onRemove.emit()
   }
-  rotate(){
+  zoomPlus(){
     this.item.rotate++
-    if(this.item.rotate > 3) this.item.rotate = 0
+  }
+
+  zoomMinus(){
+    this.item.rotate--
+  }
+
+  onMouseEnter(){
+    this.showButtons = true
+  }
+
+  onMouseLeave(){
+    this.showButtons = false
+  }
+
+  get zoom (){
+    return 1+this.item.rotate/10
   }
 
   dragStart($event) {
-    $event.source._dragRef._initialTransform = `rotate(${this.item.rotate*90}deg)`;
+    $event.source._dragRef._initialTransform = `scale(${this.zoom})`;
   }
 
   positionTitle(name:string){

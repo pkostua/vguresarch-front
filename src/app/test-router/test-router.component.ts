@@ -14,49 +14,53 @@ export class TestRouterComponent implements OnInit {
   constructor(public mainService: MainService, private router: Router) { }
 
   ngOnInit() {
-    this.mainService.currentAdult = null
-    if(!this.mainService.currentChild)this.mainService.currentChild=this.mainService.targetChildren[0]
+    this.mainService.currentAdult = null;
+    if (!this.mainService.currentChild) {this.mainService.currentChild = this.mainService.targetChildren[0]; }
   }
 
-  gotoStat(){
-    this.router.navigate(['statistic/byMember'])
+  gotoStat() {
+    this.router.navigate(['statistic/byMember']);
   }
 
-  gotoSppChildren(){
-    this.router.navigate(['sppChildren'])
+  gotoSppChildren(c: FamilyMember) {
+    this.mainService.currentChild = c;
+    this.router.navigate(['sppChildren']);
   }
 
-  gotoSppAdult(m: FamilyMember | null){
-    this.mainService.currentAdult=m
-    this.router.navigate(['sppAdult'])
+  gotoSppAdult(c: FamilyMember) {
+    this.mainService.currentChild = c;
+    this.mainService.currentAdult = this.adults[0];
+    this.router.navigate(['sppAdult']);
   }
 
-  gotoRoomTest(parent: FamilyMember = null){
-    this.mainService.currentAdult = parent
-    this.router.navigate(['room-test'])
+  gotoRoomTest(c: FamilyMember) {
+    this.mainService.currentChild = c;
+    this.mainService.currentAdult = null;
+    this.router.navigate(['room-test']);
   }
 
-  gotoAnketa(){
-    this.router.navigate(['anketa'])
+  gotoAnketa(c: FamilyMember) {
+    this.mainService.currentChild = c;
+    this.router.navigate(['anketa']);
   }
 
   setChild(c: FamilyMember) {
-    this.mainService.currentChild = c
+    this.mainService.currentChild = c;
   }
-  gotoFirst(){
-    this.router.navigate(['first'])
-  }
-
-  get adults(){
-    return this.mainService.adults
+  gotoFirst() {
+    this.router.navigate(['first']);
   }
 
-  positionTitle(name:string){
-    return positionTitle(name)
+  get adults() {
+    return this.mainService.adults;
   }
 
-  onTabChange(e){
-    setTimeout(()=>this.mainService.currentChild = this.mainService.targetChildren[e.index],500)
+  positionTitle(name: string) {
+    return positionTitle(name);
+  }
+
+  onTabChange(e) {
+    setTimeout(() => this.mainService.currentChild = this.mainService.targetChildren[e.index], 500);
   }
 
 }

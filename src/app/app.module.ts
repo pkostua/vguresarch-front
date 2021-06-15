@@ -26,6 +26,7 @@ import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 import { ByMemberComponent } from './statistic/by-member/by-member.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,7 @@ import { ByMemberComponent } from './statistic/by-member/by-member.component';
     BrowserAnimationsModule,
     DragDropModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
