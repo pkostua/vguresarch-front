@@ -1,16 +1,18 @@
-<div style="margin-left: 50px; background: white">
-  <span style="font-size: 22px; margin: 20px "><b>{{getUserName()}}, расставь предметы так, как если бы здесь жила твоя семья </b></span>
-  <button class="btn btn-outline-primary" (click)="showInfoDialog()">инструкция</button>
-  <button class="btn btn-primary" style="margin-left: 20px" type="button" (click)="submit()" [disabled]="loading">Готово</button>
-</div>
+<div style="align-items: center; text-align: center">
+  <div style="background: white">
+    <span style="font-size: 22px; margin: 20px "><b>{{getUserName()}}, расставь предметы так, как если бы здесь жила твоя семья </b></span>
+    <button class="btn btn-outline-primary" (click)="showInfoDialog()">инструкция</button>
+    <button class="btn btn-primary" style="margin-left: 20px" type="button" (click)="submit()" [disabled]="loading">Готово</button>
+  </div>
 
-<div style="position: absolute; background: white; height: 60px; overflow: auto" >
-  <span style="margin: 5px; display: inline-block" *ngFor="let i of allItems" class="preview" (click)="addItem(i)">
-    <img style="height: 50px" src="{{i.img}}" title="{{i.name}}">
-  </span>
-</div>
-<div style="background: url(../../img/houseBackground.png); width: 1000px; height: 600px; padding-top: 20px ">
-  <div id="drop-container" class="example-boundary">
-      <app-room-item *ngFor="let item of items; let i = index" [item]="item" (onRemove)="onRemove(item)" [id]="i.toString()"></app-room-item>
+  <div style="background: white; height: 60px; overflow: auto" >
+    <span style="margin: 5px; display: inline-block" *ngFor="let i of allItems" class="preview" (click)="addItem(i)">
+      <img style="height: 50px" src="{{i.img}}" title="{{i.name}}">
+    </span>
+  </div>
+  <div style="background: url(../../img/room/room.svg); width: 1100px; height: 540px; padding: 10px;margin: 0 auto;">
+    <div id="drop-container" class="example-boundary">
+        <app-room-item *ngFor="let item of items; let i = index" [item]="item" (onRemove)="onRemove(item)" [id]="i.toString()"></app-room-item>
+    </div>
   </div>
 </div>

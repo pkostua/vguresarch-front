@@ -24,11 +24,11 @@ export class RoomItemComponent {
    this.onRemove.emit()
   }
   zoomPlus(){
-    this.item.rotate++
+    this.item.rotate +=3
   }
 
   zoomMinus(){
-    this.item.rotate--
+    this.item.rotate -=3
   }
 
   onMouseEnter(){
@@ -69,6 +69,7 @@ export class RoomItemComponent {
     //this.item.initY = event.source.element.nativeElement.offsetTop
     this.item.initX = null
     this.item.initY = null
+    this.item.zedIndex = 10+y/2
     this.item.positionY = y
     this.item.positionX = x
   }

@@ -1,12 +1,9 @@
-<form [formGroup]="ownerForm" (ngSubmit)="onYesClick()">
-  <div mat-dialog-content>
-    <select id="owner" name="owner" class="form-control" formControlName="owner" required>
-      <option disabled [value]="null">Чьё (кто) это?</option>
-      <option *ngFor="let m of members" [ngValue]="m">{{m.name?m.name:positionTitle(m.familyPosition)+'('+m.age+')'}}</option>
-    </select>
+<div mat-dialog-title>{{isHuman?'Кто':'Чье'}} это?</div>
+<div mat-dialog-content>
+    <div *ngFor="let m of members" style="margin: 4px">
+      <button class="btn btn-outline-primary" style="width: 100%" (click)="onOwnerSelect(m)">{{m.name?m.name:positionTitle(m.familyPosition)+'('+m.age+')'}}</button>
+    </div>
   </div>
   <div mat-dialog-actions>
-    <button class="btn btn-outline-secondary" type="button" (click)="onNoClick()">Отменить</button>
-    <button class="btn btn-outline-secondary" type="submit">Добавить {{data.name}}</button>
+    <button class="btn btn-outline-secondary" style="width: 100%" type="button" (click)="onNoClick()">Отменить</button>
   </div>
-</form>

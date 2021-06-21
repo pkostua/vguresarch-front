@@ -31,16 +31,19 @@ export class OwnerSelectorComponent  implements AfterViewInit{
     this.dialogRef.close();
   }
 
-  onYesClick(): void {
-    if(!this.ownerForm.value.owner) return
-    this.data.owner = this.ownerForm.value.owner.id == 0?null:this.ownerForm.value.owner
+  onOwnerSelect(owner: FamilyMember | null): void {
+    this.data.owner = owner
     this.dialogRef.close(this.data);
+  }
+
+  get isHuman(){
+    return this.data.type == "human"
   }
 
   get members(){
     let  members: FamilyMember[] = [{
       id: 0,
-      name: "Общее",
+      name: this.isHuman?"Не живет с нами":"Общее",
       age:null,
       sex: null,
       familyPosition: null,

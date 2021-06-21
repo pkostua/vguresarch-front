@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="82" height="43" viewBox="0 0 82 43">
+  <defs>
+    <style>
+      .cls-1 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <image id="Слой_1" data-name="Слой 1" width="82" height="43" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFIAAAArCAYAAADrAd+SAAABYUlEQVRoge2abQ+CMAyEV7P//5dngKA42m7FS5Ttnm8Kmuy4vgYppSQLEbEvkg/y/kFE6msUMUA2bn2JWEo5KUw2jhH78ERc7qVmOlXak1pIithBLWKqHKmKqORO9btZsArwIxkKkzOWiEvnI6zOX7O2kFqxIRegkCBylROZK99YKU9Nh3RkDNNc+Thra22NNosv93kz+ggoWrgRao2Iabev1TNO1ku+Dru2OsrZGdoBvCj0HKlZbqZi9KFaK5XRkSA8R654xWjkghOtAXQkiKaQM296IjSFHL1fROEKSRH7aRYbjythP+rD6S42iFw5ssO7HamNRgz9N3/R/iwP6O7dwU+EHLGlckP7eGBrndaitabz/v9OcLIBEZq1I9eQv7kDdCQICgmCQoKgkCAoJIjo0oLLyY2TDnQkiJAj9x5whhcEPLSz05EgKCSI7tBGb2xG2wDRkSBCG3IkQxWrlNITptdqeCOQ4DIAAAAASUVORK5CYII="/>
+  <path id="Заливка_цветом_1" data-name="Заливка цветом 1" class="cls-1" d="M82,0c-0.058,1.215.007,1.859,0,3,0,0.005-2,.95-2,1,0.045,8.844-.014,20.862,0,31H77V10c-0.813.516-2.892,2.226-4,3,0.043,8.533-.19-5.542.031,30.023C72.087,42.983,71,43,70,43V15H14V35H11V15H6V43H3V10H0V7C2.313,4.918,5.1,1.951,7,0H82ZM8,2L4,7H75c1.588-1.605,2.376-2.359,4-4V2H8ZM6,10v3H70V10H6Z"/>
+</svg>
