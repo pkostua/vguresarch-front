@@ -41,18 +41,7 @@ export class OwnerSelectorComponent  implements AfterViewInit{
   }
 
   get members(){
-    let  members: FamilyMember[] = [{
-      id: 0,
-      name: this.isHuman?"Не живет с нами":"Общее",
-      age:null,
-      sex: null,
-      familyPosition: null,
-      hasAnketa: null,
-      hasRoom: null,
-      hasSppChildren: null,
-      sppAdultList: [],
-    }]
-     return members.concat(this.mainService.user.familyMembers)
+     return this.mainService.user.familyMembers
   }
 
 

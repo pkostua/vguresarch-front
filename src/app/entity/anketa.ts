@@ -6,6 +6,12 @@ export  interface Anketa {
   date: Date
   ansList: AnketaQuestion[]
   ball: number
+  smv: number
+  sft: number
+  st: number
+  ss: number
+  sp: number
+  sts: number
 
 }
 

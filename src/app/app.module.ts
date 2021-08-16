@@ -22,8 +22,12 @@ import { AnketaComponent } from './anketa/anketa.component';
 import { CheckIconComponent } from './check-icon/check-icon.component';
 import { TestResultDialogComponent } from './test-result-dialog/test-result-dialog.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatStepperModule} from '@angular/material/stepper';
+import {CdkStepperModule} from '@angular/cdk/stepper';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
 import { ByMemberComponent } from './statistic/by-member/by-member.component';
+import { ChildFormComponent } from './first-page/child-form/child-form.component';
+import { AdultFormComponent } from './first-page/adult-form/adult-form.component';
 
 
 
@@ -44,6 +48,8 @@ import { ByMemberComponent } from './statistic/by-member/by-member.component';
     TestResultDialogComponent,
     InfoDialogComponent,
     ByMemberComponent,
+    ChildFormComponent,
+    AdultFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,9 +61,11 @@ import { ByMemberComponent } from './statistic/by-member/by-member.component';
     DragDropModule,
     MatDialogModule,
     MatTabsModule,
+    MatStepperModule,
+    CdkStepperModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [OwnerSelectorComponent],
+  entryComponents: [OwnerSelectorComponent, ChildFormComponent],
 })
 export class AppModule { }

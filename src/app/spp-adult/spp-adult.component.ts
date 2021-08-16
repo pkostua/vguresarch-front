@@ -55,13 +55,17 @@ export class SppAdultComponent implements OnInit {
     })
   }
 
+  goBack(){
+    this.router.navigate(['testRouter'])
+  }
+
   showInfoDialog(){
     const dialogRef = this.dialog.open(InfoDialogComponent, {
       data: `<h4>Уважаемый родитель! Предлагаемый Вам опросник содержит утверждения о воспитании детей.</h4>
   <p>отвечайте "+" если Вы в общем согласны с ними,</p>
   <p>а "-" если Вы в общем не согласны.</p>
   <p>"Не знаю" если очень трудно выбрать, старайтесь, чтобы таких ответов было не больше 5.</p>
-  <h4>В опроснике нет "правильных" или "неправильных" утверждений. Отвечайте так, как Вы сами думаете. Этим вы поможете провести достоверное исследование.
+  <h4>В опроснике нет "правильных" или "неправильных" утверждений. Отвечайте так, как Вы сами думаете.
     </h4>`
     })
   }
@@ -77,7 +81,7 @@ export class SppAdultComponent implements OnInit {
     this.loading = true
     this.mainService.postSppAdultData(this.testList).subscribe((ans)=>{
       this.testResult = ans
-      if(this.mainService.currentAdult)this.mainService.currentChild.sppAdultList.push(this.mainService.currentAdult.id)
+      if(this.mainService.currentChild)this.mainService.currentChild.hasSppAdult = true
       const dialogRef = this.dialog.open(TestResultDialogComponent, {
         data: "<h5 class=\"card-title\">Результат</h5>" +
           `<p class="card-text">В скобках указано количество баллов при которых данная черта воспитания имеет место, т.е. если Вы набрали меньше баллов, чем указано в скобках, то эта черта к вам не относится. Если столько же или больше, тогда эта черта воспитания вам присуща. </p>` +

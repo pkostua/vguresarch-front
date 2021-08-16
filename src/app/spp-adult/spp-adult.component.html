@@ -1,5 +1,10 @@
-<div style="text-align: center; align-content: center;align-items: center; align-self: center; width: 100%">
-  <h1> Опросник для родителей <button class="btn btn-outline-primary"(click)="showInfoDialog()">инструкция</button></h1>
+<div style=" text-align: center; align-items: center">
+  <div  class="content-horizontal-center" style="width: 100%; max-width: 40rem;">
+  <div style="width:100%; max-width: 40rem; display: inline-block">
+    <h5 > Отвечая на вопросы искренне, вы узнаете ваш реальный стиль воспитания и рекомендации по нему</h5>
+    <button class="btn btn-outline-primary" (click)="showInfoDialog()">инструкция</button>
+    <button class="btn btn-outline-primary" (click)="goBack()">назад</button>
+  </div>
   <div style="display: inline-block;">
     <h2 *ngIf="loading">Загрузка</h2>
     <app-question-row  *ngFor="let q of testList;let i=index" [text]="q.text" [ansList]="q.ansList" [id]="'testRow'+i"
@@ -9,10 +14,11 @@
   </div>
 </div>
 <div style="position: fixed; right: 0; bottom: 0;">
-  <div class="card" style="width:13rem">
+  <div class="card" style="width:10rem">
     <div class="card-body" style="text-align: center">
       <p class="card-text">выбран {{myName}}</p>
     </div>
   </div>
+</div>
 </div>
 

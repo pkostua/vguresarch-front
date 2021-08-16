@@ -12,7 +12,8 @@ export class User {
   account: UserAccount | null;
   tmpUserId: string | null
   tempUser: boolean = false;
-  admin: boolean = false
+  admin: boolean = false;
+  roomCount?: number
 }
 
 export class UserAccount {
@@ -35,8 +36,9 @@ export class FamilyMember {
   hasAnketa: boolean
   hasRoom: boolean
   hasSppChildren: boolean
-  sppAdultList: number[]
+  hasSppAdult: boolean
   deleted?: boolean
+  birthOrder?: number
 }
 
 
@@ -52,11 +54,9 @@ export interface FamilyMemberDto {
   sex: string
   familyPosition: string
   user: User
-  sppChildrenTestListChild: SppChildrenTestResult[],
-  sppAdultTestListParent: SppAdultTestResult[],
-  sppAdultTestListChild: SppAdultTestResult[],
+  sppChildrenTestList: SppChildrenTestResult[],
+  sppAdultTestList: SppAdultTestResult[],
   roomTestList: RoomTestModel[]
   anketaList:Anketa[]
-  mamaSppAdult:SppAdultTestResult
 
 }

@@ -52,8 +52,6 @@ export class MainService {
 
   currentChild: FamilyMember | null = null
 
-  currentAdult: FamilyMember | null = null
-
   getAuthUser() {
     return this.httpClient.get<User>(this.url + 'user/getUser')
   }
@@ -78,7 +76,6 @@ export class MainService {
   postSppChildrenData(data: TestAns[]) {
     let url = this.url + 'sppChildren?pre=0'
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
-    if(this.currentAdult) url += '&parentId='+this.currentAdult.id
     if(this.currentChild) url += '&childId='+this.currentChild.id
     return this.httpClient.post<SppChildrenTestResult>(url,{data:data})
   }
@@ -86,7 +83,6 @@ export class MainService {
   getSppChildrenTestData() {
     let url = this.url + 'sppChildren/data?pre=0'
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
-    if(this.currentAdult) url += '&parentId='+this.currentAdult.id
     if(this.currentChild) url += '&childId='+this.currentChild.id
     return this.httpClient.get<{data:TestAns[]}>(url)
   }
@@ -98,7 +94,6 @@ export class MainService {
   postSppAdultData(data: TestAns[]) {
     let url = this.url + 'sppAdult?pre=0'
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
-    if(this.currentAdult) url += '&parentId='+this.currentAdult.id
     if(this.currentChild) url += '&childId='+this.currentChild.id
     return this.httpClient.post<SppAdultTestResult>(url,{data:data})
   }
@@ -106,7 +101,6 @@ export class MainService {
   getSppAdultTestData() {
     let url = this.url + 'sppAdult/data?pre=0'
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
-    if(this.currentAdult) url += '&parentId='+this.currentAdult.id
     if(this.currentChild) url += '&childId='+this.currentChild.id
     return this.httpClient.get<{data:TestAns[]}>(url)
   }
@@ -118,14 +112,12 @@ export class MainService {
   postAnketaData(data: TestAns[]) {
     let url = this.url + 'anketa?pre=0'
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
-    if(this.currentAdult) url += '&parentId='+this.currentAdult.id
     if(this.currentChild) url += '&childId='+this.currentChild.id
     return this.httpClient.post<Anketa>(url,{data:data})
   }
   getAnketaTestData() {
     let url = this.url + 'anketa/data?pre=0'
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
-    if(this.currentAdult) url += '&parentId='+this.currentAdult.id
     if(this.currentChild) url += '&childId='+this.currentChild.id
     return this.httpClient.get<AnketaQuestion[]>(url)
   }
@@ -133,15 +125,13 @@ export class MainService {
   postRoomData(data: RoomItemModel[]) {
     let url = this.url + 'room?pre=0'
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
-    if(this.currentAdult) url += '&memberId='+this.currentAdult.id
-    else if(this.currentChild) url += '&memberId='+this.currentChild.id
+    if(this.currentChild) url += '&memberId='+this.currentChild.id
     return this.httpClient.post<any>(url,{data:data})
   }
   getRoomTestData() {
     let url = this.url + 'room/data?pre=0'
     if(this.user.tmpUserId) url+='&tmpUserId='+this.user.tmpUserId
-    if(this.currentAdult) url += '&memberId='+this.currentAdult.id
-    else if(this.currentChild) url += '&memberId='+this.currentChild.id
+    if(this.currentChild) url += '&memberId='+this.currentChild.id
     return this.httpClient.get<RoomItemModel[]>(url)
   }
 

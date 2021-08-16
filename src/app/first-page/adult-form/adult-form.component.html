@@ -1,0 +1,17 @@
+
+<form [formGroup]="addAdultForm" (ngSubmit)="onAdd()" novalidate>
+  <div mat-dialog-title>Добавьте ребенка</div>
+  <div mat-dialog-content>
+    <label for="familyPositionAdult">Статус</label>
+    <select id="familyPositionAdult"  class="form-control" required formControlName="familyPosition">
+      <option *ngFor="let p of adultPositions" [value]="p.name">{{p.title}}</option>
+    </select>
+    <label for="adult-age">Возраст</label>
+    <input id="adult-age"  type="number" [max]="150" [min]="3" class="form-control" formControlName="age" required/>
+
+  </div>
+  <div mat-dialog-actions>
+    <button class="btn btn-outline-primary" style="width: 100%" type="submit" (click)="onSubmit()">Добавить</button>
+    <button class="btn btn-outline-secondary" style="width: 100%" type="button" (click)="onNoClick()">Отменить</button>
+  </div>
+</form>

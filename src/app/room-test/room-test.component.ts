@@ -69,7 +69,6 @@ export class RoomTestComponent implements OnInit {
     },error => {this.loading =false},()=>{this.loading=false})
   }
   getUserName(){
-    if(this.mainService.currentAdult) return positionTitle(this.mainService.currentAdult.familyPosition)
     if(this.mainService.currentChild) return this.mainService.currentChild.name
     return 'аноним'
   }
@@ -91,8 +90,8 @@ export class RoomTestComponent implements OnInit {
 
   showInfoDialog(){
     const dialogRef = this.dialog.open(InfoDialogComponent, {
-      data: `<h4>изобрази дом где ты живёшь с помощью картинок
-Выбери нужную картинку, укажи чья она или кто это и расположи её в комнате. Картинки можно уменьшать, увеличивать и удалять.
+      data: `<h4>Этот тест должен пройти <b style="color: #087f08">${this.getUserName()}</b>: изобрази дом где ты живёшь с помощью картинок -
+выбери нужную картинку, укажи чья она или кто это и расположи её в комнате. Картинки можно уменьшать, увеличивать и удалять.
     </h4>`
     })
   }

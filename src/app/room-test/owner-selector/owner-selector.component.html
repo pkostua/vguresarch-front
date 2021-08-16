@@ -1,9 +1,12 @@
-<div mat-dialog-title>{{isHuman?'Кто':'Чье'}} это?</div>
+<div mat-dialog-title>{{isHuman?'Кто':'Чьё'}} это?</div>
 <div mat-dialog-content>
-    <div *ngFor="let m of members" style="margin: 4px">
-      <button class="btn btn-outline-primary" style="width: 100%" (click)="onOwnerSelect(m)">{{m.name?m.name:positionTitle(m.familyPosition)+'('+m.age+')'}}</button>
-    </div>
+  <div style="margin: 4px">
+    <button class="btn btn-outline-primary" style="width: 100%" (click)="onOwnerSelect(null)">{{isHuman?"Не живет с нами":"Общее"}}</button>
   </div>
-  <div mat-dialog-actions>
+  <div *ngFor="let m of members" style="margin: 4px">
+      <button class="btn btn-outline-primary" style="width: 100%" (click)="onOwnerSelect(m)">{{m.name?m.name:positionTitle(m.familyPosition)}}</button>
+  </div>
+</div>
+<div mat-dialog-actions>
     <button class="btn btn-outline-secondary" style="width: 100%" type="button" (click)="onNoClick()">Отменить</button>
-  </div>
+</div>

@@ -1,13 +1,18 @@
 <table style="background: white">
   <thead>
     <tr>
-      <th rowspan="2">Юзер</th>
-      <th rowspan="2">Ребенок</th>
-      <th rowspan="2">Взрослый</th>
-      <th rowspan="2">Анкета</th>
-      <th colspan="6">Опросник для мамы</th>
-      <th colspan="20">Опросник для родителей</th>
-      <th colspan="6">Моя территория</th>
+      <th rowspan="3">Юзер</th>
+      <th rowspan="3">Ребенок</th>
+      <th rowspan="2" colspan="8">Функциональность дом. среды</th>
+      <th rowspan="2" colspan="7">Опросник для мамы</th>
+      <th rowspan="2" colspan="21">Опросник для родителей</th>
+      <th colspan="10">Моя территория</th>
+    </tr>
+    <tr>
+      <th rowspan="2">всего</th>
+      <th colspan="3">Площадь</th>
+      <th colspan="3">Количество живых</th>
+      <th colspan="3">Количество предметов</th>
     </tr>
     <tr>
       <th>СФТ</th>
@@ -16,6 +21,17 @@
       <th>СП</th>
       <th>CC</th>
       <th>CTC</th>
+      <th>Балл</th>
+      <th>Дата</th>
+
+      <th>СФТ</th>
+      <th>СТ</th>
+      <th>СМВ</th>
+      <th>СП</th>
+      <th>CC</th>
+      <th>CTC</th>
+      <th>Дата</th>
+
 
       <th>ГПЛ</th>
       <th>ГМИН</th>
@@ -37,99 +53,77 @@
       <th>ВК</th>
       <th>ПЖК</th>
       <th>ПМК</th>
+      <th>Дата</th>
 
-      <th>Вещей</th>
       <th>Моих</th>
-      <th>Живых</th>
-      <th>пл. моих</th>
-      <th>пл. общих</th>
-      <th>пл. других</th>
+      <th>Общих</th>
+      <th>Чл.с</th>
+      <th>Моих</th>
+      <th>Общих</th>
+      <th>Чл.с</th>
+      <th>Моих</th>
+      <th>Общих</th>
+      <th>Чл.с</th>
     </tr>
   </thead>
   <tbody>
     <ng-container *ngFor="let item of items">
-      <tr *ngIf="item.sppAdultTestListChild.length || item.anketaList.length || item.roomTestList.length || item.sppChildrenTestListChild.length">
-        <td><a href="" (click)="showAnketaDialog(item.user)">{{item.user.account?item.user.account.imageUrl:item.user.tmpUserId}}</a></td>
+      <tr>
+        <td><a (click)="showAnketaDialog(item.user)" style="cursor: pointer; color: blue">{{item.user.account?item.user.account.imageUrl:item.user.tmpUserId}}</a></td>
         <td>{{item.name}}</td>
-        <td>МАМА</td>
+        <td>{{item.anketaList.length? item.anketaList[0].sft:''}}</td>
+        <td>{{item.anketaList.length? item.anketaList[0].st:''}}</td>
+        <td>{{item.anketaList.length? item.anketaList[0].smv:''}}</td>
+        <td>{{item.anketaList.length? item.anketaList[0].sp:''}}</td>
+        <td>{{item.anketaList.length? item.anketaList[0].ss:''}}</td>
+        <td>{{item.anketaList.length? item.anketaList[0].sts:''}}</td>
         <td>{{item.anketaList.length? item.anketaList[0].ball:''}}</td>
-        <td>{{item.sppChildrenTestListChild.length? item.sppChildrenTestListChild[0].sft:''}}</td>
-        <td>{{item.sppChildrenTestListChild.length? item.sppChildrenTestListChild[0].st:''}}</td>
-        <td>{{item.sppChildrenTestListChild.length? item.sppChildrenTestListChild[0].smv:''}}</td>
-        <td>{{item.sppChildrenTestListChild.length? item.sppChildrenTestListChild[0].sp:''}}</td>
-        <td>{{item.sppChildrenTestListChild.length? item.sppChildrenTestListChild[0].ss:''}}</td>
-        <td>{{item.sppChildrenTestListChild.length? item.sppChildrenTestListChild[0].sts:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.gpl:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.gmin:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.ypl:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.ymin:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.tpl:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.tmin:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.zpl:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.zmin:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.cpl:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.smin:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.n:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.rrc:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.pdk:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.vn:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.fy:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.nrc:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.pnk:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.vk:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.pzk:''}}</td>
-        <td>{{item.mamaSppAdult? item.mamaSppAdult.pmk:''}}</td>
+        <td>{{item.anketaList.length? d(item.anketaList[0].date):''}}</td>
+        <td>{{item.sppChildrenTestList.length? item.sppChildrenTestList[0].sft:''}}</td>
+        <td>{{item.sppChildrenTestList.length? item.sppChildrenTestList[0].st:''}}</td>
+        <td>{{item.sppChildrenTestList.length? item.sppChildrenTestList[0].smv:''}}</td>
+        <td>{{item.sppChildrenTestList.length? item.sppChildrenTestList[0].sp:''}}</td>
+        <td>{{item.sppChildrenTestList.length? item.sppChildrenTestList[0].ss:''}}</td>
+        <td>{{item.sppChildrenTestList.length? item.sppChildrenTestList[0].sts:''}}</td>
+        <td>{{item.sppChildrenTestList.length? d(item.sppChildrenTestList[0].date):''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].gpl:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].gmin:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].ypl:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].ymin:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].tpl:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].tmin:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].zpl:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].zmin:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].cpl:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].smin:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].n:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].rrc:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].pdk:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].vn:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].fy:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].nrc:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].pnk:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].vk:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].pzk:''}}</td>
+        <td>{{item.sppAdultTestList.length? item.sppAdultTestList[0].pmk:''}}</td>
+        <td>{{item.sppAdultTestList.length? d(item.sppAdultTestList[0].date):''}}</td>
 
-        <td>{{item.roomTestList.length? item.roomTestList[0].itemsCount:''}}</td>
-        <td>{{item.roomTestList.length? item.roomTestList[0].myCount:''}}</td>
-        <td>{{item.roomTestList.length? item.roomTestList[0].aliveCount:''}}</td>
+
+        <td><a *ngIf="item.roomTestList.length" style="cursor: pointer; color: blue"
+               (click)="gotoRoomTest(item)">{{item.roomTestList[0].items.length}}</a></td>
         <td>{{item.roomTestList.length? item.roomTestList[0].mySquare:''}}</td>
         <td>{{item.roomTestList.length? item.roomTestList[0].collectiveSquare:''}}</td>
         <td>{{item.roomTestList.length? item.roomTestList[0].otherSquare:''}}</td>
 
+        <td>{{item.roomTestList.length? item.roomTestList[0].myObjectCount:''}}</td>
+        <td>{{item.roomTestList.length? item.roomTestList[0].collectiveObjectCount:''}}</td>
+        <td>{{item.roomTestList.length? item.roomTestList[0].otherObjectCount:''}}</td>
+
+        <td>{{item.roomTestList.length? item.roomTestList[0].myAliveCount:''}}</td>
+        <td>{{item.roomTestList.length? item.roomTestList[0].collectiveAliveCount:''}}</td>
+        <td>{{item.roomTestList.length? item.roomTestList[0].otherAliveCount:''}}</td>
 
       </tr>
-      <ng-container *ngIf="item.sppAdultTestListParent.length && item.familyPosition != 'MAMA'">
-        <tr *ngFor="let t of item.sppAdultTestListParent">
-          <td *ngIf="item.user.tmpUserId">{{item.user.tmpUserId}}</td>
-          <td *ngIf="item.user.account"><a href="{{item.user.account.profileUrl}}" target="_blank">{{item.user.account.imageUrl}}</a></td>
-          <td>{{t.child.name}}</td>
-          <td>{{item.familyPosition}}, {{item.age}}</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>{{t.gpl}}</td>
-          <td>{{t.gmin}}</td>
-          <td>{{t.ypl}}</td>
-          <td>{{t.ymin}}</td>
-          <td>{{t.tpl}}</td>
-          <td>{{t.tmin}}</td>
-          <td>{{t.zpl}}</td>
-          <td>{{t.zmin}}</td>
-          <td>{{t.cpl}}</td>
-          <td>{{t.smin}}</td>
-          <td>{{t.n}}</td>
-          <td>{{t.rrc}}</td>
-          <td>{{t.pdk}}</td>
-          <td>{{t.vn}}</td>
-          <td>{{t.fy}}</td>
-          <td>{{t.nrc}}</td>
-          <td>{{t.pnk}}</td>
-          <td>{{t.vk}}</td>
-          <td>{{t.pzk}}</td>
-          <td>{{t.pmk}}</td>
-          <td>{{item.roomTestList.length? item.roomTestList[0].itemsCount:''}}</td>
-          <td>{{item.roomTestList.length? item.roomTestList[0].myCount:''}}</td>
-          <td>{{item.roomTestList.length? item.roomTestList[0].aliveCount:''}}</td>
-          <td>{{item.roomTestList.length? item.roomTestList[0].mySquare:''}}</td>
-          <td>{{item.roomTestList.length? item.roomTestList[0].collectiveSquare:''}}</td>
-          <td>{{item.roomTestList.length? item.roomTestList[0].otherSquare:''}}</td>
-        </tr>
-      </ng-container>
     </ng-container>
   </tbody>
 </table>

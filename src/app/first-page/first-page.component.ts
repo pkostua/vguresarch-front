@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {MainService} from '../main.service';
 import {FormGroup, FormControl} from '@angular/forms';
-import {FamilyMember} from '../entity/user';
+import {FamilyMember, Sex} from '../entity/user';
 import {Router} from '@angular/router';
 import {familyPosition, positionTitle} from '../entity/test';
+import {RoomItemModel} from '../entity/roomTest';
+import {OwnerSelectorComponent} from '../room-test/owner-selector/owner-selector.component';
+import {MatDialog} from '@angular/material/dialog';
+import {ChildFormComponent} from './child-form/child-form.component';
+import {AdultFormComponent} from './adult-form/adult-form.component';
 
 @Component({
   selector: 'app-first-page',
@@ -12,22 +17,10 @@ import {familyPosition, positionTitle} from '../entity/test';
 })
 export class FirstPageComponent implements OnInit {
 
-  constructor(public mainService: MainService, private router: Router) { }
+  constructor(public mainService: MainService, private router: Router, public dialog: MatDialog) { }
 
   error: string | null = null;
 
-  addChildForm: FormGroup= new FormGroup({
-    name: new FormControl(),
-    age: new FormControl(),
-    sex: new FormControl(),
-    familyPosition: new FormControl(),
-
-  });
-
-  addAdultForm: FormGroup= new FormGroup({
-    age: new FormControl(),
-    familyPosition: new FormControl(),
-  });
 
   children:FamilyMember[] =[];
   adults:FamilyMember[] =[];
@@ -37,49 +30,41 @@ export class FirstPageComponent implements OnInit {
     this.adults = this.mainService.adults
   }
 
-  get adultPositions(){
-    return familyPosition.filter(p=>p.isAdult)
+  addChildDialog(): void {
+    const dialogRef = this.dialog.open(ChildFormComponent, {
+      //width: '250px',
+      data: null,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) this.children.push(result);
+
+    });
   }
 
-  get childPositions(){
-    return familyPosition.filter(p=>!p.isAdult)
+  addAdultDialog(): void {
+    const dialogRef = this.dialog.open(AdultFormComponent, {
+      //width: '250px',
+      data: null,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) this.adults.push(result);
+
+    });
   }
 
-  positionTitle(name:string){
-    return positionTitle(name)
-  }
 
-
-  onAddChild(){
-    if(this.addChildForm.valid){
-      let subUser = new FamilyMember();
-      subUser.name = this.addChildForm.value.name;
-      subUser.age = this.addChildForm.value.age;
-      subUser.sex = this.addChildForm.value.sex
-      subUser.familyPosition = this.addChildForm.value.familyPosition
-      this.children.push(subUser);
-      this.addChildForm.reset()
-      this.error=null
-    }
-  }
-
-  onAddAdult(){
-    if(this.addAdultForm.valid){
-      let subUser = new FamilyMember();
-      subUser.name = this.addAdultForm.value.name;
-      subUser.age = this.addAdultForm.value.age;
-      subUser.familyPosition = this.addAdultForm.value.familyPosition
-      this.adults.push(subUser);
-      this.addAdultForm.reset()
-      this.error=null
-    }
-  }
   onDeleteChild(su:FamilyMember){
     this.children.splice(this.children.indexOf(su),1)
   }
 
   onDeleteAdult(su:FamilyMember){
     this.adults.splice(this.children.indexOf(su),1)
+  }
+
+  positionTitle(name:string){
+    return positionTitle(name)
   }
 
   onSubmit(){
@@ -110,5 +95,39 @@ export class FirstPageComponent implements OnInit {
           this.router.navigate(['testRouter'])
         })
     }
+  }
+
+  onReject(){
+    this.error=null
+
+    this.mainService.user.familyMembers=[{
+      id:null,
+      name: "Мой ребенок",
+      age: 7,
+      sex:  "BOY",
+      familyPosition: "FIRST_CLASS",
+      hasAnketa: null,
+      hasRoom: null,
+      hasSppChildren: null,
+      hasSppAdult: null,
+    }];
+    if(this.mainService.user.tmpUserId){
+      this.mainService.updateTmpUser(this.mainService.user)
+        .subscribe((ans)=>{
+          if(ans) this.mainService.user = ans
+          this.router.navigate(['testRouter'])
+        })
+    }
+    else{
+      this.mainService.updateUser(this.mainService.user)
+        .subscribe((ans)=>{
+          if(ans) this.mainService.user = ans
+          this.router.navigate(['testRouter'])
+        })
+    }
+  }
+
+  onRoomInput(event){
+    this.mainService.user.roomCount = Number(event.target.value)
   }
 }

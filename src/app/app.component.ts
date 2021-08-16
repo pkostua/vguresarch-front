@@ -18,16 +18,24 @@ export class AppComponent implements OnInit{
       this.mainService.user = ans;
       this.loading = false;
       this.mainService.user.tmpUserId = null
-      if(this.mainService.user.familyMembers.length == 0)
+      if(ans.familyMembers.length == 0)
           this.router.navigate(['first'])
       else this.router.navigate(['testRouter'])
     },()=>{
       this.mainService.getTmpUser().subscribe((ans)=>{
         if(ans){
           this.mainService.user = ans
+          if(ans.familyMembers.length == 0) {
+            this.router.navigate(['first'])
+          }
+          else {
+            this.router.navigate(['testRouter'])
+          }
         }
       },()=>{},()=>{
-        this.router.navigate(['login'])
+        if(!this.mainService.user.id) {
+          this.router.navigate(['first'])
+        }
         this.loading = false
       })
     })

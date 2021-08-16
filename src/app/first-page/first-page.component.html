@@ -1,45 +1,37 @@
 <div style=" text-align: center; height: 100vh">
-  <div style="padding :10px; align-items: center; border: 1px solid; border-radius: 10px; vertical-align: middle; background: white; opacity: 80%; display: inline-block">
+  <div  class="content-center" style="width: 100%; max-width: 500px">
     <div>
       <h1> {{mainService.user?mainService.user.firstName:'АНОНИМНЫЙ НЕКТО'}}</h1>
-      <h2>УКАЖИТЕ ВСЕХ ЧЛЕНОВ СЕМЬИ</h2>
+      <h3>Расскажите о себе:</h3>
+      <div class="form-group row">
+        <label for="room-count" class="col-sm-8 col-form-label"><h5>Количество комнат в доме:</h5></label>
+        <div class="col-sm-4">
+          <input style="max-width: 100px" id="room-count" (input)="onRoomInput($event)"
+                 [value]="this.mainService.user.roomCount" class="form-control" type="number" [max]="150" [min]="1"/>
+        </div>
+      </div>
+      <h2>ВАША СЕМЬЯ</h2>
+      <h5>(все, кто проживают вместе)</h5>
     </div>
     <div>
-      <form [formGroup]="addChildForm" (ngSubmit)="onAddChild()" novalidate>
-        <h4>ДЕТИ:</h4>
-          <div class="input-group input-group-lg mb-3" style="width: 700px">
-            <input placeholder="имя" id="empl-name" class="form-control" formControlName="name" required/>
-            <input id="empl-age" placeholder="возраст" type="number" [max]="150" [min]="3" class="form-control" formControlName="age" required/>
-            <select id="sex"  class="form-control" required formControlName="sex">
-              <option [value]="'BOY'">Мальчик</option>
-              <option [value]="'GIRL'">Девочка</option>
-            </select>
-            <select id="familyPosition" class="form-control" required formControlName="familyPosition">
-              <option *ngFor="let p of childPositions" [value]="p.name">{{p.title}}</option>
-            </select>
-            <div class="input-group-append">
-              <button class="btn btn-primary" id="button-addon2" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-                  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                  <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </form>
+        <h4>ДЕТИ  <button class="btn btn-success" id="button-addon2" (click)="addChildDialog()" >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+            <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+          </svg> Добавить
+        </button></h4>
         <br>
         <div>
-          <div class="input-group input-group-lg mb-3" style="width: 700px" *ngFor="let su of children">
-            <input disabled [value]="su.name"  class="form-control"/>
-            <input disabled [value]="su.age" class="form-control"/>
-            <input *ngIf="su.sex=='BOY'" disabled [value]="'Мальчик'" class="form-control"/>
-            <input *ngIf="su.sex=='GIRL'" disabled [value]="'Девочка'" class="form-control"/>
-            <input disabled [value]="positionTitle(su.familyPosition)" class="form-control"/>
+          <div class="input-group input-group-lg mb-3" style="width: 100%" *ngFor="let su of children">
+            <input readonly [value]="su.name"  class="form-control"/>
+            <input readonly [value]="su.age" style="max-width: 50px" class="form-control"/>
+            <input *ngIf="su.sex=='BOY'" readonly [value]="'Мальчик'" class="form-control"/>
+            <input *ngIf="su.sex=='GIRL'" readonly [value]="'Девочка'" class="form-control"/>
+            <input readonly [value]="positionTitle(su.familyPosition)" class="form-control"/>
 
             <div class="input-group-append">
-              <button class="btn btn-warning" (click)="onDeleteChild(su)" type="button" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+              <button class="btn btn-danger" (click)="onDeleteChild(su)" type="button" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
                 </svg>
               </button>
             </div>
@@ -47,32 +39,20 @@
         </div>
       </div>
     <div>
-      <form [formGroup]="addAdultForm" (ngSubmit)="onAddAdult()" novalidate>
-        <h4>ВЗРОСЛЫЕ:</h4>
-        <div class="input-group input-group-lg" style="width: 700px">
-          <select id="familyPositionAdult"  class="form-control" required formControlName="familyPosition">
-            <option *ngFor="let p of adultPositions" [value]="p.name">{{p.title}}</option>
-          </select>
-          <input id="adult-age" placeholder="возраст" type="number" [max]="150" [min]="3" class="form-control" formControlName="age" required/>
-          <div class="input-group-append">
-            <button class="btn btn-primary" id="button-adult" type="submit">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </form>
+        <h4>ВЗРОСЛЫЕ: <button class="btn btn-success" id="button-addon3" (click)="addAdultDialog()" >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+            <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+          </svg> Добавить
+        </button></h4>
       <br>
       <div>
-        <div class="input-group input-group-lg" style="width: 700px" *ngFor="let su of adults">
-          <input disabled [value]="positionTitle(su.familyPosition)" class="form-control"/>
-          <input disabled [value]="su.age" class="form-control"/>
+        <div class="input-group input-group-lg" style="width: 100%" *ngFor="let su of adults">
+          <input readonly [value]="positionTitle(su.familyPosition)" class="form-control"/>
+          <input readonly [value]="su.age" class="form-control"/>
           <div class="input-group-append">
-            <button class="btn btn-warning" (click)="onDeleteAdult(su)" type="button" >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-x-fill" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6.146-2.854a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+            <button class="btn btn-danger" (click)="onDeleteAdult(su)" type="button" >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
               </svg>
             </button>
           </div>
@@ -82,5 +62,6 @@
       <br>
       <div *ngIf="error" class="alert alert-danger">{{error}}</div>
       <button class="btn btn-primary" (click)="onSubmit()">Готово</button>
+      <button class="btn btn-primary" (click)="onReject()" *ngIf="mainService.user.familyMembers.length == 0">Пропустить</button>
   </div>
 </div>

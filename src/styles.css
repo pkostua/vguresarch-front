@@ -21,3 +21,45 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-color: #3f51b5 !important;
   border-width: 4px !important;
 }
+.form-control:disabled, .form-control[readonly] {
+  background-color: #28a745 !important;
+  color: white;
+  opacity: 1;
+}
+
+.content-center{
+  text-align:center;
+  background: white;
+  opacity: 0.9;
+  border: 1px solid;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 10px
+}
+
+.content-horizontal-center {
+  text-align:center;
+  background: white;
+  opacity: 0.9;
+  border: 1px solid;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 10px
+}
+
+.ng-invalid {
+  border-color: red !important;
+}
+
+.mat-horizontal-stepper-header .mat-step-icon {
+  margin-right: 3px !important;
+  flex: none;
+}
+
+.mat-vertical-content {
+  padding: 0 !important;
+}

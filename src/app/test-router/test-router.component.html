@@ -1,4 +1,5 @@
-<div style="text-align: center; align-content: center;align-items: center; align-self: center; width: 100%">
+<div  style=" text-align: center">
+<div class="content-horizontal-center" style="width: 100%; max-width: 800px; ">
   <h1>Добро пожаловать!</h1>
   <h3>ИССЛЕДОВАНИЕ ДЕТЕЙ 1-4 КЛАССОВ</h3>
   <h4>следуйте шагам:</h4>
@@ -7,61 +8,58 @@
   <div>
     <div *ngFor="let child of mainService.targetChildren">
       <div style="display: inline-block;">
-        <div class="card" style="width:20rem; margin-top: 20px">
+        <div class="card" style="max-width:20rem; margin-top: 10px">
           <div class="card-header">
             <h2>{{child.name + ', ' + child.age}}</h2>
           </div>
         </div>
       </div>
-      <mat-tab-group mat-align-tabs="center">
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <div style="color: green; font-size: 16px">
+     <!-- <mat-tab-group mat-align-tabs="center">-->
+      <mat-vertical-stepper style="max-width: 50rem">
+      <mat-step [stepControl]="firstFormGroup">
+          <ng-template matStepLabel>
+            <span>АНКЕТА</span>
+            <span style="color: green; font-size: 14px">
               <app-check-icon></app-check-icon>
-            </div>
-            <h3>ШАГ 1</h3>
+            </span>
           </ng-template>
           <div style="display: inline-block;">
-            <div class="card" style="width:40rem; margin: 4px">
+            <div class="card" style="max-width:40rem;">
               <div class="card-body">
-                <h5 class="card-title">АНКЕТА</h5>
                 <p class="card-text">УКАЖИТЕ ВСЕХ ЧЛЕНОВ СЕМЬИ</p>
                 <h4><button class="btn btn-primary" type="button" (click)="gotoFirst()"
-                            *ngIf="!mainService.user.tempUser">ИЗМЕНИТЬ АНКЕТУ</button></h4>
+                            *ngIf="!mainService.user.tempUser">АНКЕТА</button></h4>
               </div>
             </div>
           </div>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <div *ngIf="child.sppAdultList && child.sppAdultList.length"
-                 style="color: green; font-size: 16px">
+        </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+          <ng-template matStepLabel>
+            <span [ngStyle]="{color:child.hasSppAdult?null:'darkgrey'}">ТЕСТ 1</span>
+            <span *ngIf="child.hasSppAdult" style="color: green; font-size: 14px">
               <app-check-icon></app-check-icon>
-            </div>
-            <h3  [ngStyle]="{color:child.sppAdultList && child.sppAdultList.length?null:'darkgrey'}">ШАГ 2</h3>
+            </span>
           </ng-template>
           <div style="display: inline-block;">
-            <div class="card" style="width:40rem; margin: 4px">
+            <div class="card" style="max-width:40rem;">
               <div class="card-body">
-                <h5 class="card-title">ТЕСТ 1</h5>
                 <p class="card-text">УЗНАТЬ СТИЛЬ ВОСПИТАНИЯ</p>
                 <button class="btn btn-primary" (click)="gotoSppAdult(child)">
-                  {{child.sppAdultList && child.sppAdultList.length?'ИЗМЕНИТЬ':'ПРОЙТИ'}}</button>
+                  {{child.hasSppAdult?'ИЗМЕНИТЬ':'ПРОЙТИ'}}</button>
               </div>
             </div>
           </div>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <div *ngIf="child.hasSppChildren" style="color: green; font-size: 16px">
+        </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+          <ng-template matStepLabel>
+            <span [ngStyle]="{color:child.hasSppChildren?null:'darkgrey'}">ТЕСТ 2</span>
+            <span *ngIf="child.hasSppChildren" style="color: green; font-size: 14px">
               <app-check-icon></app-check-icon>
-            </div>
-            <h3 [ngStyle]="{color:child.hasSppChildren?null:'darkgrey'}">ШАГ 3</h3>
+            </span>
           </ng-template>
           <div style="display: inline-block;">
-            <div class="card" style="width:40rem; margin: 4px">
+            <div class="card" style="max-width:40rem;">
               <div class="card-body">
-                <h5 class="card-title">ТЕСТ 2</h5>
                 <p class="card-text">УЗНАТЬ ГРАНИЦЫ РЕБЕНКА</p>
                 <button class="btn btn-primary" (click)="gotoSppChildren(child)">
                   {{child.hasSppChildren?"ИЗМЕНИТЬ":"ПРОЙТИ"}}
@@ -69,18 +67,17 @@
               </div>
             </div>
           </div>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <div *ngIf="child.hasAnketa" style="color: green; font-size: 16px">
+        </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+          <ng-template matStepLabel>
+            <span [ngStyle]="{color:child.hasAnketa?null:'darkgrey'}">ТЕСТ 3</span>
+            <span *ngIf="child.hasAnketa" style="color: green; font-size: 16px">
               <app-check-icon></app-check-icon>
-            </div>
-            <h3 [ngStyle]="{color:child.hasAnketa?null:'darkgrey'}">ШАГ 4</h3>
+            </span>
           </ng-template>
           <div style="display: inline-block;">
-            <div class="card" style="width:40rem; margin: 4px">
+            <div class="card" style="max-width:40rem; ">
               <div class="card-body">
-                <h5 class="card-title">ТЕСТ 3</h5>
                 <p class="card-text">ДОМАШНЯЯ СРЕДА РЕБЕНКА</p>
                 <button class="btn btn-primary" (click)="gotoAnketa(child)">
                   {{child.hasAnketa?"ИЗМЕНИТЬ":"ПРОЙТИ"}}
@@ -88,18 +85,17 @@
               </div>
             </div>
           </div>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <div *ngIf="child.hasRoom" style="color: green; font-size: 16px">
+        </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+          <ng-template matStepLabel>
+            <span [ngStyle]="{color:child.hasRoom?null:'darkgrey'}">ROOM-ТЕСТ</span>
+            <span *ngIf="child.hasRoom" style="color: green; font-size: 16px">
               <app-check-icon></app-check-icon>
-            </div>
-            <h3 [ngStyle]="{color:child.hasRoom?null:'darkgrey'}">ШАГ 5</h3>
+            </span>
           </ng-template>
           <div style="display: inline-block;">
-            <div class="card" style="width:40rem; margin: 4px" >
+            <div class="card" style="max-width:40rem; " >
               <div class="card-body">
-                <h5 class="card-title">ROOM-ТЕСТ</h5>
                 <p class="card-text"> ПРОХОДИТ РЕБЕНОК </p>
                 <button class="btn btn-primary" (click)="gotoRoomTest(child)">
                   {{child.hasRoom?"ИЗМЕНИТЬ":"ПРОЙТИ"}}
@@ -107,30 +103,34 @@
               </div>
             </div>
           </div>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <div *ngIf="child.hasRoom && child.hasAnketa && child.hasSppChildren && child.hasSppChildren && child.sppAdultList && child.sppAdultList.length"
+        </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>
+          <span [ngStyle]="{color:child.hasRoom && child.hasAnketa && child.hasSppChildren && child.hasSppChildren && child.hasSppAdult ?null:'darkgrey'}">
+              Завершение исследования</span>
+            <span *ngIf="child.hasRoom && child.hasAnketa && child.hasSppChildren && child.hasSppChildren && child.hasSppAdult"
                  style="color: green">
               <app-check-icon></app-check-icon>
-            </div>
-            <h3 [ngStyle]="{color:child.hasRoom && child.hasAnketa && child.hasSppChildren && child.hasSppChildren && child.sppAdultList && child.sppAdultList.length?null:'darkgrey'}">
-              Готово</h3>
+            </span>
           </ng-template>
           <div style="display: inline-block;">
-            <div class="card" style="width:40rem; margin: 4px" >
+            <div class="card" style="max-width:40rem;" >
               <div class="card-body">
-                <h5 class="card-title">Завершение исследования</h5>
                 <p class="card-text">
-                  ЕСЛИ ВСЁ ПРОШЛИ, <a href="https://vk.com/id7485317" target="_blank">НАПИШИТЕ МНЕ</a>
+                  ЕСЛИ ВСЁ ПРОЙДЕНО <a href="https://vk.com/id7485317" target="_blank">НАПИШИТЕ В VK</a>
+                  ИЛИ НА ПОЧТУ oksana87pochta@mail.ru
+                  <span *ngIf="mainService.user.tmpUserId"> и укажите в сообщении ваш код
+                    <b>{{mainService.user.tmpUserId.substr(-4)}}</b>
+                  </span>
                 </p>
                 <h3>СПАСИБО!</h3>
                 <br>
               </div>
             </div>
           </div>
-        </mat-tab>
-      </mat-tab-group>
+        </mat-step>
+      </mat-vertical-stepper>
     </div>
   </div>
+</div>
 </div>

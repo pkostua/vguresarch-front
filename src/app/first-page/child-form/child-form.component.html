@@ -1,0 +1,28 @@
+
+<form [formGroup]="addChildForm" (ngSubmit)="onAddChild($event)" novalidate>
+  <div mat-dialog-title>Добавьте ребенка</div>
+  <div mat-dialog-content>
+    <label for="empl-name">Имя</label>
+    <input placeholder="имя" id="empl-name" class="form-control" formControlName="name" required/>
+
+    <label for="empl-age">Возраст</label>
+    <input id="empl-age" placeholder="возраст" type="number" [max]="150" [min]="3" class="form-control" formControlName="age" required/>
+    <label for="birth-order">Порядок рождения</label>
+    <input id="birth-order" placeholder="Порядок рождения" type="number" [max]="150" [min]="1" class="form-control" formControlName="birthOrder" />
+    <label for="sex">Пол</label>
+      <select id="sex" class="form-control" required formControlName="sex">
+        <option [value]="'BOY'">Мальчик</option>
+        <option [value]="'GIRL'">Девочка</option>
+      </select>
+
+    <label for="familyPosition">Класс</label>
+      <select id="familyPosition" class="form-control" formControlName="familyPosition" required>
+        <option *ngFor="let p of childPositions" [value]="p.name">{{p.title}}</option>
+      </select>
+
+  </div>
+  <div mat-dialog-actions>
+    <button class="btn btn-outline-primary" style="width: 100%" type="submit" (click)="onSubmit()">Добавить</button>
+    <button class="btn btn-outline-secondary" style="width: 100%" type="button" (click)="onNoClick()">Отменить</button>
+  </div>
+</form>

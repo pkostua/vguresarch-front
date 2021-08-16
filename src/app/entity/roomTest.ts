@@ -16,10 +16,15 @@ export interface RoomItemModel{
 }
 
 export interface RoomTestModel {
- itemsCount: number
- myCount: number
-  aliveCount: number
+  date: any
+  myObjectCount: number
+  myAliveCount: number
+  collectiveObjectCount: number
+  collectiveAliveCount: number
+  otherObjectCount: number
+  otherAliveCount: number
   mySquare: number
   collectiveSquare: number
   otherSquare: number
+  items: RoomItemModel[]
 }
