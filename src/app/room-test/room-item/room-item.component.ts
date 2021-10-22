@@ -13,10 +13,11 @@ export class RoomItemComponent {
   constructor() { }
   @Input() item: RoomItemModel
   @Input() id: string
+  @Input() selectedId: string
 
   @Output() onRemove = new EventEmitter()
+  @Output() onSelect = new EventEmitter<string>()
 
-  showButtons: boolean = false
 
   public container:HTMLElement = document.getElementById("drop-container")
 
@@ -27,16 +28,22 @@ export class RoomItemComponent {
     this.item.rotate +=3
   }
 
+  get showButtons (){
+    return this.id === this.selectedId
+  }
+
   zoomMinus(){
     this.item.rotate -=3
   }
 
   onMouseEnter(){
-    this.showButtons = true
   }
 
   onMouseLeave(){
-    this.showButtons = false
+  }
+
+  onClick(){
+    this.onSelect.emit(this.id)
   }
 
   get zoom (){

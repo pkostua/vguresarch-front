@@ -4,6 +4,7 @@
      (cdkDragReleased)="onDrop($event)"
      (mouseenter)="onMouseEnter()"
      (mouseleave)="onMouseLeave()"
+     (click)="onClick()"
      (cdkDragStarted)="dragStart($event)">
     <img src="{{item.img}}"  id="{{'img' + id}}" title="{{item.name+', '+ (item.owner?('владелец: '+(item.owner.name?item.owner.name:positionTitle(item.owner.familyPosition))):'общее')}}"/>
 

@@ -40,6 +40,7 @@ export class RoomTestComponent implements OnInit {
   ]
 
   loading: boolean = false
+  selectedId: string = null
 
   public items: RoomItemModel[] = []
 
@@ -58,6 +59,9 @@ export class RoomTestComponent implements OnInit {
     }
   }
 
+  onSelect(e: string){
+    this.selectedId = e
+  }
 
   submit(){
     this.loading = true
